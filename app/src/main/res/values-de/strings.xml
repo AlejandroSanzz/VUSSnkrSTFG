@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VUSSnkrS</string>
+    <string name="talla">Größe</string>
+    <string name="title_comprar">Kaufen</string>
+    <string name="title_perfil">Steckbrief</string>
+    <string name="txtNombre">Vorname</string>
+    <string name="txtHombre">Männlich</string>
+    <string name="txtCorreo">Ihre E-Mail Adresse</string>
+    <string name="txtNMovil">Handynummer</string>
+    <string name="txtMujer">Frau</string>
+    <string name="txtNZapatillas">Anzahl der Schuhe</string>
+    <string name="txtPrefCompra">Präferenzen beim Einkauf</string>
+    <string name="txtApellidos">Nachname</string>
+    <string name="txtIdioma">Sprache</string>
+    <string name="txtAleman">Deutsch</string>
+    <string name="txtEspañol">Spanisch</string>
+    <string name="txtFrances">Französisch</string>
+    <string name="txtHolandes">Niederländisch</string>
+    <string name="txtIngles">Englisch</string>
+    <string name="txtItaliano">Italienisch</string>
+    <string name="txtPortugues">Portugiesisch</string>
+    <string name="title_agregar">Hinzufügen</string>
+    <string name="txt_agregar_producto">Produkt hinzufügen</string>
+    <string name="title_eliminar">Löschen</string>
+    <string name="txt_eliminar_producto">Produkt löschen</string>
+    <string name="title_actualizar">Aktualisieren</string>
+    <string name="txt_actualizar_producto">Produkt aktualisieren</string>
+    <string name="title_ver">Sehen</string>
+    <string name="hint_introduce_email">Geben sie ihre E-Mail Adresse ein</string>
+    <string name="hint_introduce_contraseña">Geben Sie Ihr Passwort ein</string>
+    <string name="txt_tienda">Speichern</string>
+</resources>

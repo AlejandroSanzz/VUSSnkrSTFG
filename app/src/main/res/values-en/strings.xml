@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VUSSnkrS</string>
+    <string name="talla">size</string>
+    <string name="title_comprar">Buy</string>
+    <string name="title_perfil">Profile</string>
+    <string name="txtNombre">Name</string>
+    <string name="txtHombre">Men</string>
+    <string name="txtMujer">Women</string>
+    <string name="txtApellidos">Surnames</string>
+    <string name="txtCorreo">Email</string>
+    <string name="txtPrefCompra">Purchase preferences</string>
+    <string name="txtNZapatillas">Number of sneakers</string>
+    <string name="txtNMovil">Phone number</string>
+    <string name="txtIdioma">Language</string>
+    <string name="txtAleman">German</string>
+    <string name="txtEspañol">Spanish</string>
+    <string name="txtFrances">French</string>
+    <string name="txtHolandes">Dutch</string>
+    <string name="txtIngles">English</string>
+    <string name="txtItaliano">Italian</string>
+    <string name="txtPortugues">Portuguese</string>
+    <string name="title_agregar">Add</string>
+    <string name="txt_agregar_producto">Add Product</string>
+    <string name="title_eliminar">Delete</string>
+    <string name="txt_eliminar_producto">Delete Product</string>
+    <string name="title_actualizar">Update</string>
+    <string name="txt_actualizar_producto">Update Product</string>
+    <string name="title_ver">Show</string>
+    <string name="hint_introduce_email">Enter your email</string>
+    <string name="hint_introduce_contraseña">Enter your password</string>
+    <string name="txt_tienda">Store</string>
+    <string name="title_favoritos">Favourites</string>
+</resources>

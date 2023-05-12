@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VUSSnkrS</string>
+    <string name="talla">taille</string>
+    <string name="title_comprar">Acheter</string>
+    <string name="title_perfil">Profil</string>
+    <string name="txtNombre">Nom</string>
+    <string name="txtHombre">Homme</string>
+    <string name="txtMujer">Femme</string>
+    <string name="txtPrefCompra">Préférences d´achat</string>
+    <string name="txtApellidos">Noms de famille</string>
+    <string name="txtCorreo">Courrier électronique</string>
+    <string name="txtNMovil">Numéro de mobile</string>
+    <string name="txtNZapatillas">Nombre de chaussures</string>
+    <string name="txtIdioma">Langage</string>
+    <string name="txtAleman">Allemand</string>
+    <string name="txtEspañol">Espagnol</string>
+    <string name="txtFrances">Français</string>
+    <string name="txtHolandes">Néerlandais</string>
+    <string name="txtIngles">Anglais</string>
+    <string name="txtItaliano">Italien</string>
+    <string name="txtPortugues">Portugais</string>
+    <string name="title_agregar">Ajouter</string>
+    <string name="txt_agregar_producto">Ajouter un produit</string>
+    <string name="title_eliminar">Supprimer</string>
+    <string name="txt_eliminar_producto">Supprimer le produit</string>
+    <string name="title_actualizar">Mise à jour</string>
+    <string name="txt_actualizar_producto">Mettre à jour le produit</string>
+    <string name="title_ver">Regarder</string>
+    <string name="hint_introduce_email">Entrer votre Email</string>
+    <string name="hint_introduce_contraseña">Tapez votre mot de passe</string>
+    <string name="txt_tienda">Boutique</string>
+</resources>

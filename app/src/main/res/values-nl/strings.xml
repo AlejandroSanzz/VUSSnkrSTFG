@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VUSSnkrS</string>
+    <string name="talla">maat</string>
+    <string name="title_comprar">Kopen</string>
+    <string name="title_perfil">Profiel</string>
+    <string name="txtNombre">Naam</string>
+    <string name="txtHombre">Man</string>
+    <string name="txtMujer">Vrouwen</string>
+    <string name="txtApellidos">Achternamen</string>
+    <string name="txtCorreo">E-mail</string>
+    <string name="txtPrefCompra">Aankoop voorkeuren</string>
+    <string name="txtNZapatillas">Aantal pantoffels</string>
+    <string name="txtNMovil">Telefoonnummer</string>
+    <string name="txtIdioma">Taal</string>
+    <string name="txtAleman">Duits</string>
+    <string name="txtEspañol">Spaans</string>
+    <string name="txtFrances">Frans</string>
+    <string name="txtHolandes">Nederlands</string>
+    <string name="txtIngles">Engels</string>
+    <string name="txtPortugues">Portugees</string>
+    <string name="txtItaliano">Italiaans</string>
+    <string name="title_agregar">Toevoegen</string>
+    <string name="txt_agregar_producto">Product toevoegen</string>
+    <string name="title_eliminar">Verwijderen</string>
+    <string name="txt_eliminar_producto">Product verwijderen</string>
+    <string name="title_actualizar">Bijwerken</string>
+    <string name="txt_actualizar_producto">Product bijwerken</string>
+    <string name="title_ver">Zien</string>
+    <string name="hint_introduce_email">Voer uw e-mailadres in</string>
+    <string name="hint_introduce_contraseña">Voer uw wachtwoord in</string>
+    <string name="txt_tienda">Winkel</string>
+</resources>
