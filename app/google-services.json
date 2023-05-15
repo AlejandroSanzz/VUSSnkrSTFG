@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "442975149064",
+    "project_id": "vussnkrs",
+    "storage_bucket": "vussnkrs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442975149064:android:e1a319ea3cae5dccb645bd",
+        "android_client_info": {
+          "package_name": "com.example.vussnkrs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442975149064-nproio2kvaek8bge1qkv3bdb3mjo1dfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDTo8x_HjaccbVXqc2WPrwg8jVAPjHJqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442975149064-nproio2kvaek8bge1qkv3bdb3mjo1dfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
