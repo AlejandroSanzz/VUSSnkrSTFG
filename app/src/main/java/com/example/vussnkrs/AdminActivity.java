@@ -25,7 +25,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
 
 
         Button btnIniciarSesion = findViewById(R.id.btn_iniciar);
@@ -36,12 +36,12 @@ public class AdminActivity extends AppCompatActivity {
     btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
         public void onClick(View view) {
             String emailUSer = email.getText().toString().trim();
-            String passUSer = password.getText().toString().trim();
+            String passUser = password.getText().toString().trim();
 
-            if (email == null && password == null) {
+            if (emailUSer == null && passUser == null) {
                 Toast.makeText(AdminActivity.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
             } else {
-                loginUser(emailUSer, passUSer);
+                loginUser(emailUSer, passUser);
             }
 
         }
