@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/apell"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegistroActivity">
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
@@ -24,34 +26,67 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Nombre"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:hint="Nombre" />
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/apellidosRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Apellidos" />
+
+        <EditText
+            android:id="@+id/tallaRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="Talla"/>
+
+        <EditText
+            android:id="@+id/direccionRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            android:hint="Direccion"/>
+
+        <EditText
+            android:id="@+id/movilRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone"
+            android:hint="Móvil"/>
 
         <EditText
             android:id="@+id/emailRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:hint="Email"/>
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/passwordRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Contraseña"
             android:inputType="textPassword"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-            android:hint="Contraseña"/>
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/buttonRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Registrarme" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

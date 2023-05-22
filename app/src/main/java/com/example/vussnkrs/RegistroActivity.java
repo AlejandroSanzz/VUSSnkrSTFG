@@ -25,7 +25,7 @@ import java.util.Map;
 public class RegistroActivity extends AppCompatActivity {
 
     Button registro;
-    EditText nombreRegistro, emailRegistro, passwordRegistro;
+    EditText nombreRegistro, apellidosRegistro, tallaRegistro, direccionRegistro, movilRegistro,  emailRegistro, passwordRegistro;
     FirebaseFirestore mFirestore;
     FirebaseAuth mAuth;
 
@@ -35,6 +35,10 @@ public class RegistroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
         registro = findViewById(R.id.buttonRegistro);
         nombreRegistro = findViewById(R.id.nombreRegistro);
+        apellidosRegistro = findViewById(R.id.apellidosRegistro);
+        tallaRegistro = findViewById(R.id.tallaRegistro);
+        direccionRegistro = findViewById(R.id.direccionRegistro);
+        movilRegistro = findViewById(R.id.movilRegistro);
         emailRegistro = findViewById(R.id.emailRegistro);
         passwordRegistro = findViewById(R.id.passwordRegistro);
         mFirestore = FirebaseFirestore.getInstance();
@@ -44,20 +48,23 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String nombre = nombreRegistro.getText().toString().trim();
+                String apellidos = apellidosRegistro.getText().toString().trim();
+                String talla = tallaRegistro.getText().toString().trim();
+                String direccion = direccionRegistro.getText().toString().trim();
+                String movil = movilRegistro.getText().toString().trim();
                 String email = emailRegistro.getText().toString().trim();
                 String password = passwordRegistro.getText().toString().trim();
                 if(nombre.isEmpty() && email.isEmpty() && password.isEmpty()) {
                     Toast.makeText(RegistroActivity.this, "Complete los datos", Toast.LENGTH_SHORT).show();
                 } else {
-                    registerUser(nombre, email, password);
-
+                    registerUser(nombre, apellidos, talla, direccion, movil, email, password);
                 }
             }
         });
 
     }
 
-    private void registerUser(String nombre, String email, String password) {
+    private void registerUser(String nombre, String  apellidos, String talla, String direccion, String movil, String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -65,6 +72,10 @@ public class RegistroActivity extends AppCompatActivity {
                 Map<String, Object> map = new HashMap<>();
                 map.put("id", id);
                 map.put("nombre", nombre);
+                map.put("apellidos", apellidos);
+                map.put("talla", talla);
+                map.put("direccion", direccion);
+                map.put("movil", movil);
                 map.put("email", email);
                 map.put("password", password);
 
