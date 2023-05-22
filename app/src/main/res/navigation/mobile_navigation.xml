@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_favoritos" />
 
     <fragment
+        android:id="@+id/navigation_cesta"
+        android:name="com.example.vussnkrs.ui.Pagina.cesta.CestaFragment"
+        android:label="@string/title_cesta"
+        tools:layout="@layout/fragment_cesta" />
+
+    <fragment
         android:id="@+id/navigation_perfil"
         android:name="com.example.vussnkrs.ui.Pagina.perfil.PerfilFragment"
         android:label="@string/title_perfil"

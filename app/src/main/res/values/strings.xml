@@ -130,4 +130,5 @@
     <string name="hint_introduce_email">Introduce tu email</string>
     <string name="hint_introduce_contraseña">Introduce tu contraseña</string>
     <string name="txt_tienda">Tienda</string>
+    <string name="title_cesta">Cesta</string>
 </resources>
