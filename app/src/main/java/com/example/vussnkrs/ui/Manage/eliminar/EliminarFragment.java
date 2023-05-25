@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.vussnkrs.BaseDeDatos;
 import com.example.vussnkrs.R;
 
 public class EliminarFragment extends Fragment {
@@ -40,27 +39,9 @@ public class EliminarFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
-    public BaseDeDatos basededatos;
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        basededatos = new BaseDeDatos(requireContext());
-        Button btn_eliminar = requireView().findViewById(R.id.btn_eliminar);
-        btn_eliminar.setOnClickListener(this::eliminarProducto);
     }
 
-    public void eliminarProducto(View view){
-        EditText editTextID = requireView().findViewById(R.id.editTextID);
-        String id = editTextID.getText().toString();
-
-        eliminarProducto(id);
-    }
-    // Método para eliminar un producto de la tabla "productos"
-    public void eliminarProducto(String id) {
-        SQLiteDatabase db = basededatos.openWritable();
-        db.delete(BaseDeDatos.TABLA_PRODUCTOS, BaseDeDatos.COLUMNA_ID + "=?", new String[]{String.valueOf(id)});
-        basededatos.close(db);
-        Toast.makeText(getContext(), "Se ha eliminado correctamente", Toast.LENGTH_SHORT).show();
-    }
 }

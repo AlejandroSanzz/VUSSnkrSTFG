@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.vussnkrs.BaseDeDatos;
 import com.example.vussnkrs.R;
 
 public class FavoritosFragment extends Fragment {
