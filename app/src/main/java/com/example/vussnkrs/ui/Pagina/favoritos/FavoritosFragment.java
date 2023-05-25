@@ -38,24 +38,4 @@ public class FavoritosFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
-    public void agregarAFavoritos(View view) {
-        // Obtener el ID del producto actual
-        //int productoId = obtenerIdProductoActual();
-
-        // Agregar el ID del producto a la tabla de favoritos
-        BaseDeDatos db = new BaseDeDatos(getActivity());
-        SQLiteDatabase sqLiteDatabase = db.openWritable();
-
-        ContentValues valores = new ContentValues();
-        //valores.put("producto_id", productoId);
-
-        sqLiteDatabase.insert("favoritos", null, valores);
-
-        db.close(sqLiteDatabase);
-
-        // Mostrar un mensaje de confirmación
-        Toast.makeText(getActivity(), "Producto agregado a favoritos", Toast.LENGTH_SHORT).show();
-    }
-
-
 }
