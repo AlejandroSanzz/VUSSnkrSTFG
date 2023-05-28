@@ -6,6 +6,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.vussnkrs.ui.Manage.adapter.ProductAdapter;
+import com.example.vussnkrs.ui.Manage.modelo.Product;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,18 +16,36 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vussnkrs.databinding.ActivityPaginaBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
 public class PaginaActivity extends AppCompatActivity {
 
+    RecyclerView mRecycler;
+    ProductAdapter mAdapter;
+    FirebaseFirestore mFirestore;
     private ActivityPaginaBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFirestore = FirebaseFirestore.getInstance();
+        mRecycler = findViewById(R.id.recyclerViewSingle);
+        mRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        Query query = mFirestore.collection("product");
+
+        FirestoreRecyclerOptions<Product> firestoreRecyclerOptions =
+                new FirestoreRecyclerOptions.Builder<Product>().setQuery(query, Product.class).build();
+        mAdapter = new ProductAdapter(firestoreRecyclerOptions);
+        mAdapter.notifyDataSetChanged();
+        mRecycler.setAdapter(mAdapter);
 
         binding = ActivityPaginaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -39,6 +60,19 @@ public class PaginaActivity extends AppCompatActivity {
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAdapter.stopListening();
+    }
+
 }
 /*
 
