@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     finish();
-                    startActivity(new Intent(MainActivity.this, PaginaActivity.class));
+                    startActivity(new Intent(MainActivity.this, TiendaActivity.class));
                     Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
