@@ -27,16 +27,15 @@ import java.util.ArrayList;
 
 public class PaginaActivity extends AppCompatActivity {
 
-   /* RecyclerView mRecycler;
+    RecyclerView mRecycler;
     ProductAdapter mAdapter;
     FirebaseFirestore mFirestore;
     private ActivityPaginaBinding binding;
-*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pagina);
-        /*mFirestore = FirebaseFirestore.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
         mRecycler = findViewById(R.id.recyclerViewSingle);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
 
@@ -59,9 +58,9 @@ public class PaginaActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_pagina);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);*/
+        NavigationUI.setupWithNavController(binding.navView, navController);
     }
-/*
+
     @Override
     public void onStart() {
         super.onStart();
@@ -72,7 +71,8 @@ public class PaginaActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         mAdapter.stopListening();
-    }*/
+    }
+
 }
 /*
 

@@ -36,7 +36,7 @@ public class ComprarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_comprar, container, false);
 
         mFirestore = FirebaseFirestore.getInstance();
-        mRecycler = view.findViewById(R.id.recyclerViewSingle3);
+        mRecycler = view.findViewById(R.id.recyclerViewSingle);
         mRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
         Query query = mFirestore.collection("product");
 
