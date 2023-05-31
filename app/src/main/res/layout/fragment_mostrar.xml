@@ -6,7 +6,7 @@
     tools:context=".ui.Manage.mostrar.MostrarFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSingle"
+        android:id="@+id/recyclerViewSingle2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
