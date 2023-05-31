@@ -6,7 +6,7 @@
     tools:context=".ui.Pagina.cesta.CestaFragment">
 
     <Button
-        android:id="@+id/btn_pagar"
+        android:id="@+id/btn_pagar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btn_paypal"

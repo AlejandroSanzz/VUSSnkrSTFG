@@ -1,6 +1,5 @@
 package com.example.vussnkrs.ui.Pagina.cesta;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
@@ -41,7 +40,7 @@ public class CestaFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_cesta, container, false);
 
-            Button paypalButton = view.findViewById(R.id.btn_pagar);
+            Button paypalButton = view.findViewById(R.id.btn_pagar2);
             paypalButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

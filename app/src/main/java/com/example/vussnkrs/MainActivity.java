@@ -24,6 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences pref;
+    EditText edittext_email_inicio_sesion, edittext_contrasena_inicio_sesion;
+    String myEmail, myPassword;
     FirebaseAuth mAuth;
     @SuppressLint("WrongViewCast")
     @Override
@@ -72,15 +75,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //pref = getPreferences(Context.MODE_PRIVATE);
-       // text_nombre = findViewById(R.id.txt_nombre);
-        //miNombre = pref.getString("miNombre","stranger");
-        /*text_talla = findViewById(R.id.text_talla);
-        miTalla = pref.getString("miTalla","0");
-        *///nVeces = Integer.parseInt(prefv.getString("nVeces","0"));
-        //text_veces = findViewById(R.id.text_veces);
-        //text_bienvenida = findViewById(R.id.txt_bienvenida);
-        //text_bienvenida.setText("Bienvenido de nuev@ " + miNombre + "!!");
+        pref = getPreferences(Context.MODE_PRIVATE);
+        edittext_email_inicio_sesion = findViewById(R.id.txt_email_inicio_sesion);
+        myEmail = pref.getString("myEmail","");
+        edittext_contrasena_inicio_sesion = findViewById(R.id.txt_contrasena_inicio_sesion);
+        myPassword = pref.getString("myPassword","");
+        edittext_email_inicio_sesion.setText(myEmail);
+        edittext_contrasena_inicio_sesion.setText(myPassword);
     }
 
     private void loginUser(String emailUSer, String passUSer) {
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     finish();
+
                     startActivity(new Intent(MainActivity.this, TiendaActivity.class));
                     Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                 } else {
@@ -101,6 +103,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
             }
         });
+
+        pref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("myEmail", edittext_email_inicio_sesion.getText().toString());
+        editor.putString("myPassword", edittext_contrasena_inicio_sesion.getText().toString());
+        editor.apply();
+
     }
 
     @Override

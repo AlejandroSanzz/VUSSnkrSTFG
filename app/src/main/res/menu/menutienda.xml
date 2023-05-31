@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Comprar"
+        android:title="@string/title_comprar"
+        android:icon="@drawable/buscar"/>
+
+    <item
+        android:id="@+id/Favoritos"
+        android:title="@string/title_favoritos"
+        android:icon="@drawable/favoritos"/>
+
+    <item
+        android:id="@+id/Cesta"
+        android:title="@string/title_cesta"
+        android:icon="@drawable/cesta"/>
+
+    <item
+        android:id="@+id/Perfil"
+        android:title="@string/title_perfil"
+        android:icon="@drawable/perfil"/>
+</menu>

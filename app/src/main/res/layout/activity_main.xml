@@ -21,7 +21,7 @@
             android:id="@+id/Logo"
             android:layout_width="187dp"
             android:layout_height="175dp"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="52dp"
             app:srcCompat="@mipmap/logo_foreground" />
 
@@ -29,7 +29,7 @@
             android:id="@+id/txt_email_inicio_sesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="@string/hint_introduce_email"
@@ -40,7 +40,7 @@
             android:id="@+id/txt_contrasena_inicio_sesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="@string/hint_introduce_contraseña"
@@ -59,9 +59,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:text="¿Aún no tienes cuenta? Registraté"
-            android:textSize="18sp"
-            tools:layout_marginTop="30dp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btn_registrarse"
