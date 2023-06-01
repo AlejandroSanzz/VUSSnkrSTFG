@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(new Intent(MainActivity.this, ManageActivity.class));
+                startActivity(new Intent(MainActivity.this, ManageActivityMostrar.class));
                 Toast.makeText(MainActivity.this, "Pantalla de Admin.", Toast.LENGTH_SHORT).show();
             }
         });

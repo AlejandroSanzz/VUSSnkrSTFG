@@ -7,7 +7,7 @@ android:layout_height="match_parent"
 tools:context=".ui.Pagina.comprar.ComprarFragment">
 
 <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerViewSingle"
+    android:id="@+id/accelerate"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 </FrameLayout>

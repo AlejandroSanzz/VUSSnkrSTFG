@@ -38,7 +38,7 @@ import java.util.Map;
 public class ManageActivity extends AppCompatActivity {
 
     ImageView foto_producto;
-    Button btn_add_Prod, boton_anadir_foto, boton_eliminar_foto;
+    Button btn_add_Prod, boton_anadir_foto, boton_eliminar_foto, button_mostrar_manage_product;
     EditText sku, nombre, categoria, descripcion, talla, precio, stock, proveedor;
     private FirebaseFirestore mfirestore;
     private FirebaseAuth mAuth;
@@ -84,6 +84,8 @@ public class ManageActivity extends AppCompatActivity {
         btn_add_Prod = findViewById(R.id.btn_agregar);
         mfirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        button_mostrar_manage_product = findViewById(R.id.button_mostrar_manage_product);
+
 
         storageReference = FirebaseStorage.getInstance().getReference();
         foto_producto = findViewById(R.id.foto_producto);
@@ -119,6 +121,13 @@ public class ManageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 uploadFoto();
+            }
+        });
+
+        button_mostrar_manage_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ManageActivity.this, ManageActivityMostrar.class));
             }
         });
 

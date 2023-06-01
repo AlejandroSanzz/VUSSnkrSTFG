@@ -7,21 +7,21 @@
 
 
     <TextView
-        android:id="@+id/nombreMostrar"
+        android:id="@+id/nombreMostrarManage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nombre"
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/precioMostrar"
+        android:id="@+id/precioMostrarManage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Precio"
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/imagenMostrar"
+        android:id="@+id/imagenMostrarManage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Imagen"
@@ -37,14 +37,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:backgroundTint="#FF0000"
+            android:text="Eliminar" />
 
         <Button
             android:id="@+id/button_editar_manage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Editar" />
     </LinearLayout>
 
 </LinearLayout>
