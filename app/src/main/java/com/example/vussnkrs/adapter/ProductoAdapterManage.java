@@ -2,6 +2,7 @@ package com.example.vussnkrs.adapter;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vussnkrs.CreateProductActivity;
+import com.example.vussnkrs.ManageActivity;
 import com.example.vussnkrs.R;import com.example.vussnkrs.productos.ProductosManage;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -26,7 +29,7 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
     Activity activity;
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre, talla, precio;
-        Button button_eliminar_manage;
+        Button button_eliminar_manage, button_editar_manage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -35,6 +38,7 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
             talla = itemView.findViewById(R.id.imagenMostrarManage);
             precio = itemView.findViewById(R.id.precioMostrarManage);
             button_eliminar_manage = itemView.findViewById(R.id.button_eliminar_manage);
+            button_editar_manage = itemView.findViewById(R.id.button_editar_manage);
         }
     }
 
@@ -62,6 +66,15 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
             @Override
             public void onClick(View view) {
                 deleteProduct(id);
+            }
+        });
+
+        holder.button_editar_manage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(activity, CreateProductActivity.class );
+                i.putExtra("id_product", id);
+                activity.startActivity(i);
             }
         });
     }

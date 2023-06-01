@@ -74,7 +74,13 @@
             android:id="@+id/btn_admin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Mostrar productos" />
+
+        <Button
+            android:id="@+id/btn_admin_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar productos" />
 
     </LinearLayout>
 

@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Button btInicioSesion = findViewById(R.id.btn_iniciar_sesion);
         Button btRegistro = findViewById(R.id.btn_registrarse);
         Button btAdmin = findViewById(R.id.btn_admin);
+        Button btAdminAgregar = findViewById(R.id.btn_admin_agregar);
         EditText emailInicioSesion = findViewById(R.id.txt_email_inicio_sesion);
         EditText passwordInicioSesion = findViewById(R.id.txt_contrasena_inicio_sesion);
 
@@ -70,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 startActivity(new Intent(MainActivity.this, ManageActivityMostrar.class));
+                Toast.makeText(MainActivity.this, "Pantalla de Admin.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btAdminAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(MainActivity.this, CreateProductActivity.class));
                 Toast.makeText(MainActivity.this, "Pantalla de Admin.", Toast.LENGTH_SHORT).show();
             }
         });

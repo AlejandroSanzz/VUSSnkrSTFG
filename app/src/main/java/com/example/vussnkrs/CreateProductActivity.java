@@ -1,7 +1,13 @@
 package com.example.vussnkrs;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,20 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.vussnkrs.databinding.ActivityManageBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.vussnkrs.databinding.ActivityManageBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,14 +32,13 @@ import com.google.firebase.storage.UploadTask;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ManageActivity extends AppCompatActivity {
+public class CreateProductActivity extends AppCompatActivity {
 
     ImageView foto_producto;
-    Button btn_add_Prod, boton_anadir_foto, boton_eliminar_foto, button_mostrar_manage_product;
+    Button btn_add_Prod, boton_anadir_foto, boton_eliminar_foto;
     EditText sku, nombre, categoria, descripcion, talla, precio, stock, proveedor;
     private FirebaseFirestore mfirestore;
     private FirebaseAuth mAuth;
-    private ActivityManageBinding binding;
 
     StorageReference storageReference;
     String storage_path = "product/*";
@@ -60,21 +55,9 @@ public class ManageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_product);
 
-        binding = ActivityManageBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_agregar, R.id.navigation_eliminar, R.id.navigation_actualizar, R.id.navigation_mostrar)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_manage);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
-
-    /*    sku = findViewById(R.id.editTextSKU);
+        sku = findViewById(R.id.editTextSKU);
         nombre = findViewById(R.id.editTextNombre);
         categoria = findViewById(R.id.editTextCategoria);
         descripcion = findViewById(R.id.editTextDescripcion);
@@ -85,7 +68,6 @@ public class ManageActivity extends AppCompatActivity {
         btn_add_Prod = findViewById(R.id.btn_agregar);
         mfirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        button_mostrar_manage_product = findViewById(R.id.button_mostrar_manage_product);
 
 
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -113,14 +95,14 @@ public class ManageActivity extends AppCompatActivity {
 
 
                     if (nombreProduct.isEmpty() && tallaProduct.isEmpty() && skuProduct.isEmpty() && nombreProduct.isEmpty() && categoriaProduct.isEmpty() && descripcionProduct.isEmpty() && tallaProduct.isEmpty() && precioProduct.isEmpty() && stockProduct.isEmpty() && proveedorProduct.isEmpty()) {
-                        Toast.makeText(ManageActivity.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateProductActivity.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
                     } else {
                         postProduct(skuProduct, nombreProduct, categoriaProduct, descripcionProduct, tallaProduct, precioProduct, stockProduct, proveedorProduct);
                     }
                 }
             });
         } else {
-            btn_add_Prod.setText("Actualizar");
+            btn_add_Prod.setText("Actualizar producto");
             getProduct(id);
 
             btn_add_Prod.setOnClickListener(new View.OnClickListener() {
@@ -136,9 +118,10 @@ public class ManageActivity extends AppCompatActivity {
                     String proveedorProduct = proveedor.getText().toString().trim();
 
                     if (nombreProduct.isEmpty() && tallaProduct.isEmpty() && skuProduct.isEmpty() && nombreProduct.isEmpty() && categoriaProduct.isEmpty() && descripcionProduct.isEmpty() && tallaProduct.isEmpty() && precioProduct.isEmpty() && stockProduct.isEmpty() && proveedorProduct.isEmpty()) {
-                        Toast.makeText(ManageActivity.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateProductActivity.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
                     } else {
                         updateProduct(skuProduct, nombreProduct, categoriaProduct, descripcionProduct, tallaProduct, precioProduct, stockProduct, proveedorProduct, id);
+                        startActivity(new Intent(CreateProductActivity.this, ManageActivityMostrar.class));
                     }
                 }
             });
@@ -154,13 +137,6 @@ public class ManageActivity extends AppCompatActivity {
             }
         });
 
-        button_mostrar_manage_product.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ManageActivity.this, ManageActivityMostrar.class));
-            }
-        });
-*/
     }
 
     private void updateProduct(String skuProduct, String nombreProduct, String categoriaProduct, String descripcionProduct, String tallaProduct, String precioProduct, String stockProduct, String proveedorProduct, String id) {
@@ -177,13 +153,13 @@ public class ManageActivity extends AppCompatActivity {
         mfirestore.collection("product").document(id).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(ManageActivity.this, "Actualizado exitosamente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateProductActivity.this, "Actualizado exitosamente", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ManageActivity.this, "Error al actualizar ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateProductActivity.this, "Error al actualizar ", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -204,13 +180,13 @@ public class ManageActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 finish();
-                Toast.makeText(ManageActivity.this, "Creado exitosamente", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ManageActivity.this, MainActivity.class));
+                Toast.makeText(CreateProductActivity.this, "Creado exitosamente", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CreateProductActivity.this, MainActivity.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ManageActivity.this, "Error al ingresar ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateProductActivity.this, "Error al ingresar ", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -240,7 +216,7 @@ public class ManageActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ManageActivity.this, "Error al actualizar ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateProductActivity.this, "Error al actualizar ", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -288,7 +264,7 @@ public class ManageActivity extends AppCompatActivity {
                             HashMap<String, Object> map = new HashMap<>();
                             map.put("foto", downolad_uri);
                             mfirestore.collection("product").document(idd).update(map);
-                            Toast.makeText(ManageActivity.this, "Foto actualizada", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateProductActivity.this, "Foto actualizada", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     });
@@ -297,8 +273,22 @@ public class ManageActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ManageActivity.this, "Error al cargar la foto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateProductActivity.this, "Error al cargar la foto", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed () {
+        new AlertDialog.Builder(this)
+                .setMessage("¿Desea salir de la pantalla?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(CreateProductActivity.this, MainActivity.class));
+                    }
+                })
+                .setNegativeButton("No", null) // No hace nada, simplemente cierra el diálogo
+                .show();
     }
 }
