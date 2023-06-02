@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button btInicioSesion = findViewById(R.id.btn_iniciar_sesion);
         Button btRegistro = findViewById(R.id.btn_registrarse);
-        Button btAdmin = findViewById(R.id.btn_admin);
-        Button btAdminAgregar = findViewById(R.id.btn_admin_agregar);
         EditText emailInicioSesion = findViewById(R.id.txt_email_inicio_sesion);
         EditText passwordInicioSesion = findViewById(R.id.txt_contrasena_inicio_sesion);
 
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userId = user.getUid();
+
 
                     if (userId.equals("PzpgJf4uKrPv8NquUgfHdtNG5B52")) {
                         // Usuario específico, redirigir a otra actividad

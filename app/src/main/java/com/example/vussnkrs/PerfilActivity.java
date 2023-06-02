@@ -1,5 +1,6 @@
 package com.example.vussnkrs;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,15 +15,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.vussnkrs.adapter.ProductoAdapter;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Locale;
 
+
+
 public class PerfilActivity extends AppCompatActivity {
 
+    EditText txt_nombre, txt_apellidos, txt_direccion, txt_numero, txt_correo, txt_contraseña;
+
+    Button btn_actualizar_perfil;
+    FirebaseFirestore mFirestore;
     private Spinner prefCompraSpinner, nZapatillasSpinner, idiomaSpinner;
 
     @Override
@@ -36,6 +52,25 @@ public class PerfilActivity extends AppCompatActivity {
 
         prefCompraSpinner = findViewById(R.id.pref_spinner);
         nZapatillasSpinner = findViewById(R.id.nzapatillas_spinner);
+
+         txt_nombre = findViewById(R.id.txt_nombre2);
+         txt_apellidos = findViewById(R.id.txt_apellidos);
+         txt_direccion = findViewById(R.id.txt_direccion);
+         txt_numero = findViewById(R.id.txt_numero);
+         txt_correo = findViewById(R.id.txt_correo);
+         txt_contraseña = findViewById(R.id.txt_contraseña);
+         btn_actualizar_perfil = findViewById(R.id.btn_actualizar_datos);
+        mFirestore = FirebaseFirestore.getInstance();
+
+
+        btn_actualizar_perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getProduct("xUCUKDxG1GfNRIvZzOEiKMXdiqg2");
+            }
+        });
+
+
         /*
         idiomaSpinner = findViewById(R.id.idioma_spinner);
 
@@ -179,5 +214,32 @@ public class PerfilActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void getProduct (String id) {
+        mFirestore.collection("user").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String skuProduct = documentSnapshot.getString("nombre");
+                String nombreProduct = documentSnapshot.getString("apellidos");
+                String categoriaProduct = documentSnapshot.getString("direccion");
+                String descripcionProduct = documentSnapshot.getString("movil");
+                String tallaProduct = documentSnapshot.getString("password");
+
+                txt_nombre.setText(skuProduct);
+                txt_apellidos.setText(nombreProduct);
+                txt_direccion.setText(categoriaProduct);
+                txt_numero.setText(descripcionProduct);
+                txt_correo.setText(tallaProduct);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(PerfilActivity.this, "Error al actualizar ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
 }
 
