@@ -104,6 +104,12 @@
                 android:layout_height="wrap_content"
                 android:text="Elegir idioma" />
 
+        <Switch
+            android:id="@+id/switch_idioma"
+            android:layout_width="346dp"
+            android:layout_height="wrap_content"
+            android:text="Cambiar idioma" />
+
         <Spinner
             android:id="@+id/idioma_spinner"
             android:layout_width="178dp"

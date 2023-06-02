@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,8 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -31,7 +36,68 @@ public class PerfilActivity extends AppCompatActivity {
 
         prefCompraSpinner = findViewById(R.id.pref_spinner);
         nZapatillasSpinner = findViewById(R.id.nzapatillas_spinner);
+        /*
         idiomaSpinner = findViewById(R.id.idioma_spinner);
+
+        Switch switchIdioma = findViewById(R.id.switch_idioma);
+
+        switchIdioma.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Cambiar al idioma seleccionado (por ejemplo, inglés)
+                    cambiarIdioma("en");
+                } else {
+                    // Cambiar al idioma predeterminado (por ejemplo, español)
+                    cambiarIdioma("es");
+                }
+            }
+        });
+
+        private void cambiarIdioma(String codigoIdioma) {
+            Locale locale = new Locale(codigoIdioma);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.setLocale(locale);
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+            // Reiniciar la actividad actual para refrescar los recursos de idioma
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
+
+        ArrayAdapter<CharSequence> idiomaAdaptador = ArrayAdapter.createFromResource(
+                this,
+                R.array.Idiomas,
+                android.R.layout.simple_spinner_item
+        );
+        idiomaAdaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        idiomaSpinner.setAdapter(idiomaAdaptador);
+        idiomaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String idiomaSeleccionado = parent.getItemAtPosition(position).toString();
+
+                // Cambiar el idioma de la aplicación
+                Locale locale = new Locale(idiomaSeleccionado);
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.setLocale(locale);
+                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+                // Reiniciar la actividad actual para refrescar los recursos de idioma
+                //Intent intent = getIntent();
+                //finish();
+                //startActivity(intent);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Acción a realizar cuando no se selecciona ningún idioma
+            }
+        });
+        */
 
         ArrayAdapter<CharSequence> prefAdaptador = ArrayAdapter.createFromResource(
                 this,
