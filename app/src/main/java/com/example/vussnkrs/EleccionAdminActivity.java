@@ -2,6 +2,8 @@ package com.example.vussnkrs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,5 +32,19 @@ public class EleccionAdminActivity extends AppCompatActivity {
     public void irTienda (View view){
         startActivity(new Intent(EleccionAdminActivity.this, TiendaActivity.class));
         Toast.makeText(EleccionAdminActivity.this, "Bienvenido a la tienda", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed () {
+        new AlertDialog.Builder(this)
+                .setMessage("¿Desea salir de la aplicación?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0); // Cierra la actividad actual
+                    }
+                })
+                .setNegativeButton("No", null) // No hace nada, simplemente cierra el diálogo
+                .show();
     }
 }
