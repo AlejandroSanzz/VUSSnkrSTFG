@@ -97,7 +97,7 @@ public class ManageActivityMostrar extends AppCompatActivity {
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(ManageActivityMostrar.this, MainActivity.class));
+                        startActivity(new Intent(ManageActivityMostrar.this, EleccionAdminActivity.class));
                     }
                 })
                 .setNegativeButton("No", null) // No hace nada, simplemente cierra el diálogo

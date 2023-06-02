@@ -7,24 +7,46 @@
     tools:context=".EleccionAdminActivity">
 
     <Button
-        android:id="@+id/btn_modificar"
+        android:id="@+id/btn_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="280dp"
-        android:onClick="irAdmin"
-        android:text="Modificar"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="60dp"
+        android:onClick="Admin"
+        android:text="Mostrar productos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_bienvenido_admin" />
+
+    <Button
+        android:id="@+id/btn_admin_agregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="60dp"
+        android:onClick="AdminAgregar"
+        android:text="Agregar productos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_admin" />
 
     <Button
         android:id="@+id/btn_tienda"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="68dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="60dp"
         android:onClick="irTienda"
         android:text="Tienda"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_modificar" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_admin_agregar" />
+
+    <TextView
+        android:id="@+id/textview_bienvenido_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="164dp"
+        android:text="Bienvenido Admin!"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

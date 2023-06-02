@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -99,9 +100,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    String userId = user.getUid();
+
+                    if (userId.equals("PzpgJf4uKrPv8NquUgfHdtNG5B52")) {
+                        // Usuario específico, redirigir a otra actividad
+                        startActivity(new Intent(MainActivity.this, EleccionAdminActivity.class));
+                    } else {
+                        // Otros usuarios, redirigir a la actividad predeterminada
+                        startActivity(new Intent(MainActivity.this, TiendaActivity.class));
+                    }
+
                     finish();
 
-                    startActivity(new Intent(MainActivity.this, TiendaActivity.class));
+                   // startActivity(new Intent(MainActivity.this, TiendaActivity.class));
                     Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();

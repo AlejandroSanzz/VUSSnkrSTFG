@@ -2,6 +2,8 @@ package com.example.vussnkrs.adapter;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,7 +67,17 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
         holder.button_eliminar_manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteProduct(id);
+                new AlertDialog.Builder(view.getContext())
+                        .setMessage("¿Desea eliminar este producto?")
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteProduct(id); //Elimina el producto
+                            }
+                        })
+                        .setNegativeButton("No", null) // No hace nada, simplemente cierra el diálogo
+                        .show();
+
             }
         });
 
