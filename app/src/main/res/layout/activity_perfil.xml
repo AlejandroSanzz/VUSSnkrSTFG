@@ -28,80 +28,119 @@
             android:layout_marginTop="20dp"
             android:text="@string/txtNombre" />
 
-    <EditText
-        android:id="@+id/txt_nombre2"
-        android:layout_width="372dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/txt_nombre2"
+            android:layout_width="372dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textview_apellidos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txtApellidos" />
+        <TextView
+            android:id="@+id/textview_apellidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtApellidos" />
 
-    <EditText
-        android:id="@+id/txt_apellidos"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/txt_apellidos"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <TextView
+
+        <TextView
+            android:id="@+id/textview_direccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dirección" />
+
+        <EditText
+            android:id="@+id/txt_direccion"
+            android:layout_width="372dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPostalAddress" />
+
+        <TextView
+            android:id="@+id/textview_numero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtNMovil" />
+
+        <EditText
+            android:id="@+id/txt_numero"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/textview_prefcompra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtPrefCompra" />
+
+        <Spinner
+            android:id="@+id/pref_spinner"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textview_nzapatillas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtNZapatillas" />
+
+        <Spinner
+            android:id="@+id/nzapatillas_spinner"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
+            android:dropDownHeight="160dp" />
+
+            <TextView
+                android:id="@+id/txtIdioma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Elegir idioma" />
+
+        <Spinner
+            android:id="@+id/idioma_spinner"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
+            android:dropDownHeight="160dp" />
+
+        <TextView
         android:id="@+id/textview_correo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/txtCorreo" />
 
-    <EditText
-        android:id="@+id/txt_correo"
-        android:layout_width="372dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/txt_correo"
+            android:layout_width="372dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
 
-    <TextView
-        android:id="@+id/textview_numero"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txtNMovil" />
+        <TextView
+            android:id="@+id/textview_contraseña"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contraseña" />
 
-    <EditText
-        android:id="@+id/txt_numero"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone" />
+        <EditText
+            android:id="@+id/txt_contraseña"
+            android:layout_width="373dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/textview_prefcompra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txtPrefCompra" />
-
-    <Spinner
-        android:id="@+id/pref_spinner"
-        android:layout_width="178dp"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/textview_nzapatillas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txtNZapatillas" />
-
-    <Spinner
-        android:id="@+id/nzapatillas_spinner"
-        android:layout_width="178dp"
-        android:layout_height="wrap_content"
-        android:dropDownHeight="160dp" />
-
-    <TextView
-        android:id="@+id/txtIdioma"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <Button
+            android:id="@+id/btn_actualizar_datos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar datos" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

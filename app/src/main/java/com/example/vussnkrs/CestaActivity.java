@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +47,10 @@ public class CestaActivity extends AppCompatActivity {
         paypalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PayPalPayment payment = new PayPalPayment(new BigDecimal("0.01"), "EUR", "Descripción del pago", PayPalPayment.PAYMENT_INTENT_SALE);
+                String valorTexto = ((TextView) findViewById(R.id.txt_preciototal)).getText().toString();
+                BigDecimal valor = new BigDecimal(valorTexto);
+
+                PayPalPayment payment = new PayPalPayment(valor, "EUR", "Descripción del pago", PayPalPayment.PAYMENT_INTENT_SALE);
 
                 Intent intent = new Intent(CestaActivity.this, PaymentActivity.class);
                 intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);

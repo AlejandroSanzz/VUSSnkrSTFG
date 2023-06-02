@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class PerfilActivity extends AppCompatActivity {
 
-    private Spinner prefCompraSpinner, nZapatillasSpinner;
+    private Spinner prefCompraSpinner, nZapatillasSpinner, idiomaSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         prefCompraSpinner = findViewById(R.id.pref_spinner);
         nZapatillasSpinner = findViewById(R.id.nzapatillas_spinner);
+        idiomaSpinner = findViewById(R.id.idioma_spinner);
 
         ArrayAdapter<CharSequence> prefAdaptador = ArrayAdapter.createFromResource(
                 this,
