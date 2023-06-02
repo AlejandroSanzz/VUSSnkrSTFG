@@ -67,25 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(MainActivity.this, ManageActivityMostrar.class));
-                Toast.makeText(MainActivity.this, "Pantalla de Admin.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btAdminAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(MainActivity.this, CreateProductActivity.class));
-                Toast.makeText(MainActivity.this, "Pantalla de Admin.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
         pref = getPreferences(Context.MODE_PRIVATE);
         edittext_email_inicio_sesion = findViewById(R.id.txt_email_inicio_sesion);
         myEmail = pref.getString("myEmail","");
