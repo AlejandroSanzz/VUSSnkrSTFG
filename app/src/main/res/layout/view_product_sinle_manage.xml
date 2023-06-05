@@ -7,21 +7,21 @@
 
 
     <TextView
-        android:id="@+id/nombreMostrarManage"
+        android:id="@+id/nombreMostrarCesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nombre"
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/precioMostrarManage"
+        android:id="@+id/precioMostrarCesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Precio"
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/imagenMostrarManage"
+        android:id="@+id/imagenMostrarCesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Imagen"
@@ -33,7 +33,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_eliminar_manage"
+            android:id="@+id/button_cesta_producto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,7 +41,7 @@
             android:text="Eliminar" />
 
         <Button
-            android:id="@+id/button_editar_manage"
+            android:id="@+id/button_favorito_producto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

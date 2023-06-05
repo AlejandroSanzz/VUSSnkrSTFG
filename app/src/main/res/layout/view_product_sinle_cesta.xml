@@ -7,25 +7,32 @@
 
 
     <TextView
-        android:id="@+id/nombreMostrar"
+        android:id="@+id/nombreMostrarCesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nombre"
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/precioMostrar"
+        android:id="@+id/precioMostrarCesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Precio"
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/imagenMostrar"
+        android:id="@+id/imagenMostrarCesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Imagen"
         android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/stockMostrarCesta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stock"
+        android:textSize="17sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,17 +41,19 @@
 
         <Button
             android:id="@+id/button_cesta_producto"
-            android:layout_width="wrap_content"
+            android:layout_width="30sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cesta" />
+            android:backgroundTint="#FF0000"
+            android:text="-" />
+
 
         <Button
             android:id="@+id/button_favorito_producto"
-            android:layout_width="wrap_content"
+            android:layout_width="30sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Favs" />
+            android:text="+" />
     </LinearLayout>
 
 </LinearLayout>

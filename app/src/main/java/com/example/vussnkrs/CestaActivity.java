@@ -14,7 +14,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vussnkrs.adapter.ProductoAdapter;
+import com.example.vussnkrs.adapter.ProductoAdapterCesta;
+import com.example.vussnkrs.productos.Productos;
+import com.example.vussnkrs.productos.ProductosCesta;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -26,6 +35,10 @@ import java.math.BigDecimal;
 public class CestaActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_PAYMENT = 1;
     private PayPalConfiguration config;
+
+    RecyclerView mRecycler;
+    ProductoAdapterCesta mAdapter;
+    FirebaseFirestore mFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +57,20 @@ public class CestaActivity extends AppCompatActivity {
         startService(intent);
 
         Button paypalButton = findViewById(R.id.btn_pagar);
+
+        mFirestore = FirebaseFirestore.getInstance();
+        mRecycler = findViewById(R.id.recyclerViewSingleCesta);
+        mRecycler.setLayoutManager(new LinearLayoutManager(this));
+        Query query = mFirestore.collection("productCesta");
+
+        FirestoreRecyclerOptions<ProductosCesta> firestoreRecyclerOptions =
+                new FirestoreRecyclerOptions.Builder<ProductosCesta>()
+                        .setQuery(query, ProductosCesta.class)
+                        .build();
+
+        mAdapter = new ProductoAdapterCesta(firestoreRecyclerOptions);
+        mAdapter.notifyDataSetChanged();
+        mRecycler.setAdapter(mAdapter);
         paypalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vussnkrs.CreateProductActivity;
-import com.example.vussnkrs.ManageActivity;
 import com.example.vussnkrs.R;import com.example.vussnkrs.productos.ProductosManage;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -36,11 +35,11 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nombre = itemView.findViewById(R.id.nombreMostrarManage);
-            talla = itemView.findViewById(R.id.imagenMostrarManage);
-            precio = itemView.findViewById(R.id.precioMostrarManage);
-            button_eliminar_manage = itemView.findViewById(R.id.button_eliminar_manage);
-            button_editar_manage = itemView.findViewById(R.id.button_editar_manage);
+            nombre = itemView.findViewById(R.id.nombreMostrarCesta);
+            talla = itemView.findViewById(R.id.imagenMostrarCesta);
+            precio = itemView.findViewById(R.id.precioMostrarCesta);
+            button_eliminar_manage = itemView.findViewById(R.id.button_cesta_producto);
+            button_editar_manage = itemView.findViewById(R.id.button_favorito_producto);
         }
     }
 

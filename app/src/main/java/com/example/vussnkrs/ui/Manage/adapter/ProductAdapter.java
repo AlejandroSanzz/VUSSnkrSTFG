@@ -43,9 +43,9 @@ public class ProductAdapter extends FirestoreRecyclerAdapter<Product, ProductAda
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nombre = itemView.findViewById(R.id.nombreMostrarManage);
-            imagen = itemView.findViewById(R.id.imagenMostrarManage);
-            precio = itemView.findViewById(R.id.precioMostrarManage);
+            nombre = itemView.findViewById(R.id.nombreMostrarCesta);
+            imagen = itemView.findViewById(R.id.imagenMostrarCesta);
+            precio = itemView.findViewById(R.id.precioMostrarCesta);
         }
     }
 }
