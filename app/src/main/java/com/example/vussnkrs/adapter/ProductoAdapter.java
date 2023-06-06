@@ -1,7 +1,10 @@
 package com.example.vussnkrs.adapter;
 
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,18 +104,24 @@ public class ProductoAdapter extends FirestoreRecyclerAdapter<Productos, Product
         map.put("talla", tallaProduct);
         map.put("precio", precioProduct);
 
-        FirebaseFirestore mfirestore;
-        mfirestore = FirebaseFirestore.getInstance();
-        mfirestore.collection("productCesta").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
+        FirebaseFirestore mfirestore = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userID = currentUser.getUid();
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-            }
-        });
+        mfirestore.collection("user").document(userID).collection("productCesta").add(map)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        // El producto se agregó exitosamente a la colección "productFavoritos"
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Ocurrió un error al guardar los favoritos del usuario
+                    }
+                });
     }
 
     private void postProductFavoritos(String nombreProduct,String tallaProduct, String precioProduct) {
@@ -122,18 +131,24 @@ public class ProductoAdapter extends FirestoreRecyclerAdapter<Productos, Product
         map.put("talla", tallaProduct);
         map.put("precio", precioProduct);
 
-        FirebaseFirestore mfirestore;
-        mfirestore = FirebaseFirestore.getInstance();
-        mfirestore.collection("productFavoritos").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
+        FirebaseFirestore mfirestore = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userId = currentUser.getUid();
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-            }
-        });
+        mfirestore.collection("user").document(userId).collection("productFavoritos").add(map)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        // El producto se agregó exitosamente a la colección "productFavoritos"
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Ocurrió un error al guardar los favoritos del usuario
+                    }
+                });
     }
 
     @NonNull

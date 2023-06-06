@@ -25,6 +25,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -89,7 +91,12 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
     }
 
     private void deleteProduct(String id) {
-        mFirestore.collection("productCesta").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+        FirebaseFirestore mfirestore = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userID = currentUser.getUid();
+
+        mfirestore.collection("user").document(userID).collection("productCesta").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(activity, "Eliminado correctamente", Toast.LENGTH_SHORT).show();

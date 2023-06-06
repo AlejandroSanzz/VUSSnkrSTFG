@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,8 @@ import com.example.vussnkrs.adapter.ProductoAdapterFavoritos;
 import com.example.vussnkrs.productos.ProductosCesta;
 import com.example.vussnkrs.productos.ProductosFavoritos;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -27,6 +30,10 @@ public class FavoritosActivity extends AppCompatActivity {
     RecyclerView mRecycler;
     ProductoAdapterFavoritos mAdapter;
     FirebaseFirestore mFirestore;
+
+    // Obtén el ID de usuario guardado en SharedPreferences
+    //SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+    //String userID = sharedPreferences.getString("userID", "");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +46,11 @@ public class FavoritosActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         mRecycler = findViewById(R.id.recyclerViewSingleFavoritos);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
-        Query query = mFirestore.collection("productFavoritos");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userId = currentUser.getUid();
+
+        Query query = mFirestore.collection("user").document(userId).collection("productFavoritos");
 
         FirestoreRecyclerOptions<ProductosFavoritos> firestoreRecyclerOptions =
                 new FirestoreRecyclerOptions.Builder<ProductosFavoritos>()

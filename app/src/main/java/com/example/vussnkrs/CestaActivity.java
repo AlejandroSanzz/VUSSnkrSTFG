@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vussnkrs.adapter.ProductoAdapterCesta;
 import com.example.vussnkrs.productos.ProductosCesta;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -64,7 +66,10 @@ public class CestaActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         mRecycler = findViewById(R.id.recyclerViewSingleCesta);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
-        Query query = mFirestore.collection("productCesta");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userID = currentUser.getUid();
+        Query query = mFirestore.collection("user").document(userID).collection("productCesta");
 
         FirestoreRecyclerOptions<ProductosCesta> firestoreRecyclerOptions =
                 new FirestoreRecyclerOptions.Builder<ProductosCesta>()
