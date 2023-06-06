@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -68,7 +70,7 @@ public class PerfilActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
             String userId = firebaseAuth.getCurrentUser().getUid();
-            getProduct(userId);
+            getUser(userId);
         }
 
 
@@ -191,6 +193,32 @@ public class PerfilActivity extends AppCompatActivity {
 
             }
         });
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+
+        int nZapatillasPosition = sharedPreferences.getInt("nZapatillasPosition", 0);
+
+        nZapatillasSpinner.setSelection(nZapatillasPosition);
+
+        nZapatillasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("nZapatillasPosition", position);
+
+                editor.commit();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // No action needed
+            }
+        });
+
+
     }
 
     @Override
@@ -224,22 +252,22 @@ public class PerfilActivity extends AppCompatActivity {
         }
     }
 
-    private void getProduct (String id) {
+    private void getUser (String id) {
         mFirestore.collection("user").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String skuProduct = documentSnapshot.getString("nombre");
-                String nombreProduct = documentSnapshot.getString("apellidos");
-                String categoriaProduct = documentSnapshot.getString("direccion");
-                String descripcionProduct = documentSnapshot.getString("movil");
-                String tallaProduct = documentSnapshot.getString("email");
+                String nombreUser = documentSnapshot.getString("nombre");
+                String apellidosUser = documentSnapshot.getString("apellidos");
+                String direccionUser = documentSnapshot.getString("direccion");
+                String movilUser = documentSnapshot.getString("movil");
+                String emailUser = documentSnapshot.getString("email");
                 String passwordUser = documentSnapshot.getString("password");
 
-                txt_nombre.setText(skuProduct);
-                txt_apellidos.setText(nombreProduct);
-                txt_direccion.setText(categoriaProduct);
-                txt_numero.setText(descripcionProduct);
-                txt_correo.setText(tallaProduct);
+                txt_nombre.setText(nombreUser);
+                txt_apellidos.setText(apellidosUser);
+                txt_direccion.setText(direccionUser);
+                txt_numero.setText(movilUser);
+                txt_correo.setText(emailUser);
                 txt_contraseña.setText(passwordUser);
 
             }
