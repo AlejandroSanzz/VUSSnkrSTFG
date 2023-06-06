@@ -29,15 +29,15 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     Activity activity;
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nombre, talla, precio;
+        TextView nombre, imagen, precio;
         Button button_eliminar_manage, button_editar_manage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nombre = itemView.findViewById(R.id.nombreMostrarCesta);
-            talla = itemView.findViewById(R.id.imagenMostrarCesta);
-            precio = itemView.findViewById(R.id.precioMostrarCesta);
+            nombre = itemView.findViewById(R.id.nombreMostrarManage);
+            imagen = itemView.findViewById(R.id.imagenMostrarManage);
+            precio = itemView.findViewById(R.id.precioMostrarManage);
             button_eliminar_manage = itemView.findViewById(R.id.button_eliminar_manage);
             button_editar_manage = itemView.findViewById(R.id.button_editar_manage);
         }
@@ -60,7 +60,7 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
         final String id = documentSnapshot.getId();
 
         holder.nombre.setText(ProductosManage.getNombre());
-        holder.talla.setText(ProductosManage.getTalla());
+        holder.imagen.setText(ProductosManage.getTalla());
         holder.precio.setText(ProductosManage.getPrecio());
 
         holder.button_eliminar_manage.setOnClickListener(new View.OnClickListener() {
