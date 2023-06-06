@@ -38,8 +38,8 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
             nombre = itemView.findViewById(R.id.nombreMostrarCesta);
             talla = itemView.findViewById(R.id.imagenMostrarCesta);
             precio = itemView.findViewById(R.id.precioMostrarCesta);
-            button_eliminar_manage = itemView.findViewById(R.id.button_cesta_producto);
-            button_editar_manage = itemView.findViewById(R.id.button_favorito_producto);
+            button_eliminar_manage = itemView.findViewById(R.id.button_eliminar_manage);
+            button_editar_manage = itemView.findViewById(R.id.button_editar_manage);
         }
     }
 

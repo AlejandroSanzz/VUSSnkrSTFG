@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.example.vussnkrs.adapter.ProductoAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -53,20 +54,28 @@ public class PerfilActivity extends AppCompatActivity {
         prefCompraSpinner = findViewById(R.id.pref_spinner);
         nZapatillasSpinner = findViewById(R.id.nzapatillas_spinner);
 
-         txt_nombre = findViewById(R.id.txt_nombre2);
-         txt_apellidos = findViewById(R.id.txt_apellidos);
-         txt_direccion = findViewById(R.id.txt_direccion);
-         txt_numero = findViewById(R.id.txt_numero);
-         txt_correo = findViewById(R.id.txt_correo);
-         txt_contraseña = findViewById(R.id.txt_contraseña);
-         btn_actualizar_perfil = findViewById(R.id.btn_actualizar_datos);
+        txt_nombre = findViewById(R.id.txt_nombre2);
+        txt_apellidos = findViewById(R.id.txt_apellidos);
+        txt_direccion = findViewById(R.id.txt_direccion);
+        txt_numero = findViewById(R.id.txt_numero);
+        txt_correo = findViewById(R.id.txt_correo);
+        txt_contraseña = findViewById(R.id.txt_contraseña);
+        btn_actualizar_perfil = findViewById(R.id.btn_actualizar_datos);
         mFirestore = FirebaseFirestore.getInstance();
+
+
+        // Obtener el ID del usuario y llamar a getProduct()
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
+            String userId = firebaseAuth.getCurrentUser().getUid();
+            getProduct(userId);
+        }
 
 
         btn_actualizar_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getProduct("xUCUKDxG1GfNRIvZzOEiKMXdiqg2");
+                //getProduct("xUCUKDxG1GfNRIvZzOEiKMXdiqg2");
             }
         });
 
@@ -224,12 +233,14 @@ public class PerfilActivity extends AppCompatActivity {
                 String categoriaProduct = documentSnapshot.getString("direccion");
                 String descripcionProduct = documentSnapshot.getString("movil");
                 String tallaProduct = documentSnapshot.getString("password");
+               // String passwordUser = documentSnapshot.getString("password");
 
                 txt_nombre.setText(skuProduct);
                 txt_apellidos.setText(nombreProduct);
                 txt_direccion.setText(categoriaProduct);
                 txt_numero.setText(descripcionProduct);
                 txt_correo.setText(tallaProduct);
+                //txt_contraseña.setText(passwordUser);
 
             }
         }).addOnFailureListener(new OnFailureListener() {

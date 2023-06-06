@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +21,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,9 +35,7 @@ public class ProductoAdapter extends FirestoreRecyclerAdapter<Productos, Product
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre, talla, precio;
-
-        Button button_cesta_producto, button_favorito_producto;
-
+        ImageView imageview_cesta, imageview_favoritos;
         FirebaseFirestore mfirestore;
 
         public ViewHolder(@NonNull View itemView) {
@@ -41,8 +44,8 @@ public class ProductoAdapter extends FirestoreRecyclerAdapter<Productos, Product
             nombre = itemView.findViewById(R.id.nombreMostrar);
             talla = itemView.findViewById(R.id.imagenMostrar);
             precio = itemView.findViewById(R.id.precioMostrar);
-            button_cesta_producto = itemView.findViewById(R.id.button_cesta_producto);
-
+            imageview_cesta = itemView.findViewById(R.id.imageview_cesta);
+            imageview_favoritos = itemView.findViewById(R.id.imageview_favoritos);
             mfirestore = FirebaseFirestore.getInstance();
 
         }
@@ -64,19 +67,35 @@ public class ProductoAdapter extends FirestoreRecyclerAdapter<Productos, Product
         holder.talla.setText(Productos.getTalla());
         holder.precio.setText(Productos.getPrecio());
 
-        holder.button_cesta_producto.setOnClickListener(new View.OnClickListener() {
+        holder.imageview_cesta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nombreProduct = holder.nombre.getText().toString().trim();
                 String tallaProduct = holder.talla.getText().toString().trim();
                 String precioProduct = holder.precio.getText().toString().trim();
 
-                postProduct(nombreProduct, tallaProduct, precioProduct);
+                postProductCesta(nombreProduct, tallaProduct, precioProduct);
+                Toast.makeText(view.getContext(), "Producto añadido a la cesta", Toast.LENGTH_SHORT).show();
             }
+
         });
+
+        holder.imageview_favoritos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreProduct = holder.nombre.getText().toString().trim();
+                String tallaProduct = holder.talla.getText().toString().trim();
+                String precioProduct = holder.precio.getText().toString().trim();
+
+                postProductFavoritos(nombreProduct, tallaProduct, precioProduct);
+                Toast.makeText(view.getContext(), "Producto añadido a favoritos", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
     }
 
-    private void postProduct(String nombreProduct,String tallaProduct, String precioProduct) {
+    private void postProductCesta(String nombreProduct,String tallaProduct, String precioProduct) {
         Map<String, Object> map = new HashMap<>();
         map.put("nombre", nombreProduct);
         map.put("talla", tallaProduct);
@@ -85,6 +104,27 @@ public class ProductoAdapter extends FirestoreRecyclerAdapter<Productos, Product
         FirebaseFirestore mfirestore;
         mfirestore = FirebaseFirestore.getInstance();
         mfirestore.collection("productCesta").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+            }
+        });
+    }
+
+    private void postProductFavoritos(String nombreProduct,String tallaProduct, String precioProduct) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("nombre", nombreProduct);
+        map.put("talla", tallaProduct);
+        map.put("precio", precioProduct);
+
+        FirebaseFirestore mfirestore;
+        mfirestore = FirebaseFirestore.getInstance();
+        mfirestore.collection("productFavoritos").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
 

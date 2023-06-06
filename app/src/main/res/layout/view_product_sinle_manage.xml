@@ -30,7 +30,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="€" />
+            android:text="€"
+            android:textSize="17sp" />
+
     </LinearLayout>
 
     <TextView
@@ -51,14 +53,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#FF0000"
-            android:text="Eliminar" />
+            android:text="Eliminar"
+            android:drawableLeft="@drawable/eliminar"/>
 
         <Button
             android:id="@+id/button_editar_manage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Editar" />
+            android:text="Editar"
+            android:drawableLeft="@drawable/mostrar"/>
     </LinearLayout>
 
 </LinearLayout>

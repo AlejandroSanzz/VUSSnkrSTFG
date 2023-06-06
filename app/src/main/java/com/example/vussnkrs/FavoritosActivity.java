@@ -2,6 +2,8 @@ package com.example.vussnkrs;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +12,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.vussnkrs.adapter.ProductoAdapterCesta;
+import com.example.vussnkrs.productos.ProductosCesta;
+import com.example.vussnkrs.productos.ProductosFavoritos;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
 public class FavoritosActivity extends AppCompatActivity {
+
+    RecyclerView mRecycler;
+    ProductoAdapterCesta mAdapter;
+    FirebaseFirestore mFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +32,16 @@ public class FavoritosActivity extends AppCompatActivity {
         // Configurar la AppBar
         Toolbar toolbar = findViewById(R.id.toolbarfavoritos);
         setSupportActionBar(toolbar);
+
+        mFirestore = FirebaseFirestore.getInstance();
+        mRecycler = findViewById(R.id.recyclerViewSingleFavoritos);
+        mRecycler.setLayoutManager(new LinearLayoutManager(this));
+        Query query = mFirestore.collection("productFavoritos");
+
+        FirestoreRecyclerOptions<ProductosFavoritos> firestoreRecyclerOptions =
+                new FirestoreRecyclerOptions.Builder<ProductosFavoritos>()
+                        .setQuery(query, ProductosFavoritos.class)
+                        .build();
     }
 
     @Override
