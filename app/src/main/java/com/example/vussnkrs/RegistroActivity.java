@@ -54,7 +54,7 @@ public class RegistroActivity extends AppCompatActivity {
                 String movil = movilRegistro.getText().toString().trim();
                 String email = emailRegistro.getText().toString().trim();
                 String password = passwordRegistro.getText().toString().trim();
-                if(nombre.isEmpty() && email.isEmpty() && password.isEmpty()) {
+                if(nombre.isEmpty() || apellidos.isEmpty() || talla.isEmpty() || direccion.isEmpty() || movil.isEmpty() || email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(RegistroActivity.this, "Complete los datos", Toast.LENGTH_SHORT).show();
                 } else {
                     registerUser(nombre, apellidos, talla, direccion, movil, email, password);

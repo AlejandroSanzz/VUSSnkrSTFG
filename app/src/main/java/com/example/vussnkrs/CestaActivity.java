@@ -102,7 +102,7 @@ public class CestaActivity extends AppCompatActivity {
             precioTotal = precioTotal.add(precioProducto);
         }
 
-        txtPrecioTotal.setText(" " + precioTotal.toString());
+        txtPrecioTotal.setText(precioTotal.toString());
     }
 
     public void onActualizarCestaClick(View view) {
