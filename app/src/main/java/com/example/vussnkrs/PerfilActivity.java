@@ -26,7 +26,6 @@ import android.widget.Toast;
 import com.example.vussnkrs.adapter.ProductoAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -63,18 +62,11 @@ public class PerfilActivity extends AppCompatActivity {
          btn_actualizar_perfil = findViewById(R.id.btn_actualizar_datos);
         mFirestore = FirebaseFirestore.getInstance();
 
-        //Obtener el ID del usuario y llamar a getProduct()
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null) {
-            String userId = firebaseAuth.getCurrentUser().getUid();
-            getProduct(userId);
-        }
-
 
         btn_actualizar_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // getProduct("xUCUKDxG1GfNRIvZzOEiKMXdiqg2");
+                getProduct("xUCUKDxG1GfNRIvZzOEiKMXdiqg2");
             }
         });
 

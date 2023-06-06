@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     String userId = user.getUid();
 
 
-                    if (userId.equals("OGVt9hq3KtR1vsxfHyj7qGshyLx1j")) {
+                    if (userId.equals("OGVt9hq3KtR1vsxfHyj7qGshyLx1")) {
                         // Usuario específico, redirigir a otra actividad
                         startActivity(new Intent(MainActivity.this, EleccionAdminActivity.class));
                     } else {

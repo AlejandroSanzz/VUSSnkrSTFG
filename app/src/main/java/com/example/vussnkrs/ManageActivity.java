@@ -74,6 +74,7 @@ public class ManageActivity extends AppCompatActivity {
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+
     /*    sku = findViewById(R.id.editTextSKU);
         nombre = findViewById(R.id.editTextNombre);
         categoria = findViewById(R.id.editTextCategoria);
@@ -162,6 +163,8 @@ public class ManageActivity extends AppCompatActivity {
         });
 */
     }
+
+
 
     private void updateProduct(String skuProduct, String nombreProduct, String categoriaProduct, String descripcionProduct, String tallaProduct, String precioProduct, String stockProduct, String proveedorProduct, String id) {
         Map<String, Object> map = new HashMap<>();
