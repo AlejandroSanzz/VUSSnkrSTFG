@@ -252,5 +252,9 @@ public class PerfilActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed () {
+        System.exit(0); // Cierra la actividad actual
+    }
 }
 

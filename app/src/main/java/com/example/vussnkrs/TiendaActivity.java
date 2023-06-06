@@ -100,7 +100,7 @@ public class TiendaActivity extends AppCompatActivity {
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        System.exit(0); // Cierra la actividad actual
+                        finishAffinity(); // Cierra la aplicación completamente
                     }
                 })
                 .setNegativeButton("No", null) // No hace nada, simplemente cierra el diálogo

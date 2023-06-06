@@ -21,52 +21,57 @@
             app:titleTextColor="#FBFBFB"
             tools:ignore="MissingConstraints" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSingleCesta"
+            android:layout_width="408dp"
+            android:layout_height="501dp" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewSingleCesta"
-                android:layout_width="408dp"
-                android:layout_height="527dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textview_preciototal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Precio total:"
-                android:textSize="20sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txt_preciototal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_eurototal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="1000"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textview_eurocesta"
-                android:layout_width="255dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="€"
-                android:textSize="20sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/txt_asegurate"
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Asegurate de haber actualizado la cesta antes de realizar la compra"
+            android:textSize="12sp" />
+
         <Button
-            android:id="@+id/btn_actualizar_cesta"
+            android:id="@+id/btn_sumar_precios"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Actualizar cesta" />
+            android:onClick="onActualizarCestaClick"
+            android:text="Actualizar Cesta" />
+
 
         <Button
             android:id="@+id/btn_pagar"

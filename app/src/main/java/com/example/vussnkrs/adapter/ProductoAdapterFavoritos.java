@@ -37,6 +37,7 @@ public class ProductoAdapterFavoritos extends FirestoreRecyclerAdapter<Productos
             nombre = itemView.findViewById(R.id.nombreMostrarFavoritos);
             talla = itemView.findViewById(R.id.imagenMostrarFavoritos);
             precio = itemView.findViewById(R.id.precioMostrarFavoritos);
+           // stock = itemView.findViewById(R.id.stockMostrarFavoritos);
             imageview_eliminar_favoritos = itemView.findViewById(R.id.imageview_eliminar_favoritos);
         }
     }
@@ -59,6 +60,7 @@ public class ProductoAdapterFavoritos extends FirestoreRecyclerAdapter<Productos
         holder.nombre.setText(ProductosFavoritos.getNombre());
         holder.talla.setText(ProductosFavoritos.getTalla());
         holder.precio.setText(ProductosFavoritos.getPrecio());
+        //holder.stock.setText(ProductosFavoritos.getStock());
 
         holder.imageview_eliminar_favoritos.setOnClickListener(new View.OnClickListener() {
             @Override

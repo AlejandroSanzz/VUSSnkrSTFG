@@ -4,6 +4,7 @@ package com.example.vussnkrs.adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vussnkrs.CestaActivity;
+import com.example.vussnkrs.EleccionAdminActivity;
+import com.example.vussnkrs.MainActivity;
 import com.example.vussnkrs.R;
 import com.example.vussnkrs.productos.Productos;
 import com.example.vussnkrs.productos.ProductosCesta;
@@ -52,6 +56,7 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
      */
     public ProductoAdapterCesta(@NonNull FirestoreRecyclerOptions<ProductosCesta> options) {
         super(options);
+        this.activity = activity;
     }
 
     @Override
@@ -88,6 +93,7 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(activity, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+                activity.finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

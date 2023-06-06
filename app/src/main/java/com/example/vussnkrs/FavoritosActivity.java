@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.vussnkrs.adapter.ProductoAdapterCesta;
+import com.example.vussnkrs.adapter.ProductoAdapterFavoritos;
 import com.example.vussnkrs.productos.ProductosCesta;
 import com.example.vussnkrs.productos.ProductosFavoritos;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -22,7 +25,7 @@ import com.google.firebase.firestore.Query;
 public class FavoritosActivity extends AppCompatActivity {
 
     RecyclerView mRecycler;
-    ProductoAdapterCesta mAdapter;
+    ProductoAdapterFavoritos mAdapter;
     FirebaseFirestore mFirestore;
 
     @Override
@@ -42,6 +45,10 @@ public class FavoritosActivity extends AppCompatActivity {
                 new FirestoreRecyclerOptions.Builder<ProductosFavoritos>()
                         .setQuery(query, ProductosFavoritos.class)
                         .build();
+
+        mAdapter = new ProductoAdapterFavoritos(firestoreRecyclerOptions);
+        mAdapter.notifyDataSetChanged();
+        mRecycler.setAdapter(mAdapter);
     }
 
     @Override
@@ -73,5 +80,21 @@ public class FavoritosActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mAdapter.stopListening();
+    }
+
+    @Override
+    public void onBackPressed () {
+        System.exit(0); // Cierra la actividad actual
     }
 }

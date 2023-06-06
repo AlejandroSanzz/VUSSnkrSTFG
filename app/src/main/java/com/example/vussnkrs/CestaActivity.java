@@ -1,6 +1,5 @@
 package com.example.vussnkrs;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.vussnkrs.adapter.ProductoAdapter;
 import com.example.vussnkrs.adapter.ProductoAdapterCesta;
-import com.example.vussnkrs.productos.Productos;
 import com.example.vussnkrs.productos.ProductosCesta;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,6 +37,11 @@ public class CestaActivity extends AppCompatActivity {
     ProductoAdapterCesta mAdapter;
     FirebaseFirestore mFirestore;
 
+    //String precioTotal = String.valueOf(0.0);
+    TextView txtPrecioTotal;
+
+    private BigDecimal precioTotal = BigDecimal.ZERO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,7 @@ public class CestaActivity extends AppCompatActivity {
         startService(intent);
 
         Button paypalButton = findViewById(R.id.btn_pagar);
+        txtPrecioTotal = findViewById(R.id.txt_preciototal);
 
         mFirestore = FirebaseFirestore.getInstance();
         mRecycler = findViewById(R.id.recyclerViewSingleCesta);
@@ -85,7 +88,29 @@ public class CestaActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_PAYMENT);
             }
         });
+
+
+
     }
+
+    private void calcularPrecioTotal() {
+        precioTotal = BigDecimal.ZERO;
+
+        for (int i = 0; i < mAdapter.getItemCount(); i++) {
+            ProductosCesta producto = mAdapter.getItem(i);
+            BigDecimal precioProducto = new BigDecimal(producto.getPrecio());
+            precioTotal = precioTotal.add(precioProducto);
+        }
+
+        txtPrecioTotal.setText(" " + precioTotal.toString());
+    }
+
+    public void onActualizarCestaClick(View view) {
+        calcularPrecioTotal();
+        Toast.makeText(this, "Cesta actualizada correctamente", Toast.LENGTH_SHORT).show();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,11 +166,17 @@ public class CestaActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mAdapter.startListening();
+        calcularPrecioTotal();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         mAdapter.stopListening();
+    }
+
+    @Override
+    public void onBackPressed () {
+        System.exit(0); // Cierra la actividad actual
     }
 }
