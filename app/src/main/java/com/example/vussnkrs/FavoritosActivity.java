@@ -57,7 +57,7 @@ public class FavoritosActivity extends AppCompatActivity {
                         .setQuery(query, ProductosFavoritos.class)
                         .build();
 
-        mAdapter = new ProductoAdapterFavoritos(firestoreRecyclerOptions);
+        mAdapter = new ProductoAdapterFavoritos(firestoreRecyclerOptions, this);
         mAdapter.notifyDataSetChanged();
         mRecycler.setAdapter(mAdapter);
     }

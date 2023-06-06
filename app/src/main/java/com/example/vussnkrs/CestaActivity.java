@@ -76,7 +76,7 @@ public class CestaActivity extends AppCompatActivity {
                         .setQuery(query, ProductosCesta.class)
                         .build();
 
-        mAdapter = new ProductoAdapterCesta(firestoreRecyclerOptions);
+        mAdapter = new ProductoAdapterCesta(firestoreRecyclerOptions, this);
         mAdapter.notifyDataSetChanged();
         mRecycler.setAdapter(mAdapter);
         paypalButton.setOnClickListener(new View.OnClickListener() {

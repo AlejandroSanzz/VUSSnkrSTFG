@@ -3,6 +3,7 @@ package com.example.vussnkrs.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     Activity activity;
 
+    private Context context;
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre, talla, precio, stock;//precioTotal;
 
@@ -56,9 +58,9 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
      *
      * @param options
      */
-    public ProductoAdapterCesta(@NonNull FirestoreRecyclerOptions<ProductosCesta> options) {
+    public ProductoAdapterCesta(@NonNull FirestoreRecyclerOptions<ProductosCesta> options, Context context) {
         super(options);
-        this.activity = activity;
+        this.context = context;
     }
 
     @Override
@@ -99,13 +101,13 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
         mfirestore.collection("user").document(userID).collection("productCesta").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(activity, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
-                activity.finish();
+                Toast.makeText(context, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(activity, "Error al eliminar producto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al eliminar producto", Toast.LENGTH_SHORT).show();
             }
         });
     }

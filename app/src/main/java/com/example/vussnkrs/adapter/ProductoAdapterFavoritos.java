@@ -2,6 +2,7 @@ package com.example.vussnkrs.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vussnkrs.FavoritosActivity;
 import com.example.vussnkrs.R;
 import com.example.vussnkrs.productos.Productos;
 import com.example.vussnkrs.productos.ProductosFavoritos;
@@ -29,6 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProductoAdapterFavoritos extends FirestoreRecyclerAdapter<ProductosFavoritos, ProductoAdapterFavoritos.ViewHolder> {
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     Activity activity;
+    private Context context;
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre, talla, precio, stock;
 
@@ -50,8 +54,9 @@ public class ProductoAdapterFavoritos extends FirestoreRecyclerAdapter<Productos
      *
      * @param options
      */
-    public ProductoAdapterFavoritos(@NonNull FirestoreRecyclerOptions<ProductosFavoritos> options) {
+    public ProductoAdapterFavoritos(@NonNull FirestoreRecyclerOptions<ProductosFavoritos> options, Context context) {
         super(options);
+        this.context = context;
     }
 
     @Override
@@ -90,12 +95,12 @@ public class ProductoAdapterFavoritos extends FirestoreRecyclerAdapter<Productos
         mfirestore.collection("user").document(userID).collection("productFavoritos").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(activity, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(activity, "Error al eliminar producto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al eliminar producto", Toast.LENGTH_SHORT).show();
             }
         });
     }
