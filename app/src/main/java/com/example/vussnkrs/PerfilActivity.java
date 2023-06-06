@@ -232,15 +232,15 @@ public class PerfilActivity extends AppCompatActivity {
                 String nombreProduct = documentSnapshot.getString("apellidos");
                 String categoriaProduct = documentSnapshot.getString("direccion");
                 String descripcionProduct = documentSnapshot.getString("movil");
-                String tallaProduct = documentSnapshot.getString("password");
-               // String passwordUser = documentSnapshot.getString("password");
+                String tallaProduct = documentSnapshot.getString("email");
+                String passwordUser = documentSnapshot.getString("password");
 
                 txt_nombre.setText(skuProduct);
                 txt_apellidos.setText(nombreProduct);
                 txt_direccion.setText(categoriaProduct);
                 txt_numero.setText(descripcionProduct);
                 txt_correo.setText(tallaProduct);
-                //txt_contraseña.setText(passwordUser);
+                txt_contraseña.setText(passwordUser);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
