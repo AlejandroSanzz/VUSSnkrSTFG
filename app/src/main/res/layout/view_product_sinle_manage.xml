@@ -15,16 +15,18 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="170dp"
+                android:layout_width="172dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="60dp">
 
                 <TextView
                     android:id="@+id/nombreMostrarManage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nombre"
-                    android:textSize="17sp" />
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -59,8 +61,8 @@
 
             <ImageView
                 android:id="@+id/fotoMostrarFavoritos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="200dp"
+                android:layout_height="200dp" />
 
         </TableRow>
 
