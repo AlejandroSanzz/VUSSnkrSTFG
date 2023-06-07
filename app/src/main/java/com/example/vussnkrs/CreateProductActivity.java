@@ -74,9 +74,9 @@ public class CreateProductActivity extends AppCompatActivity {
 
 
         storageReference = FirebaseStorage.getInstance().getReference();
-        foto_producto = findViewById(R.id.foto_producto);
+
         boton_anadir_foto = findViewById(R.id.boton_anadir_foto);
-        boton_eliminar_foto = findViewById(R.id.boton_eliminar_foto);
+
         progressDialog = new ProgressDialog(this);
 
        // boton_anadir_cesta = findViewById(R.id.imageview_cesta);
