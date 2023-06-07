@@ -43,7 +43,6 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
             nombre = itemView.findViewById(R.id.nombreMostrarCesta);
             talla = itemView.findViewById(R.id.tallaMostrarCesta);
             precio = itemView.findViewById(R.id.precioMostrarCesta);
-            stock = itemView.findViewById(R.id.stockMostrarCesta);
             foto = itemView.findViewById(R.id.fotoMostrarCesta);
             imageview_eliminar_cesta = itemView.findViewById(R.id.imageview_eliminar_cesta);
         }
@@ -68,7 +67,6 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
         holder.nombre.setText(ProductosCesta.getNombre());
         holder.talla.setText(ProductosCesta.getTalla());
         holder.precio.setText(ProductosCesta.getPrecio());
-        holder.stock.setText(ProductosCesta.getStock());
 
         // Obtén la URL de descarga de la imagen desde productosManage
         String imageUrl = ProductosCesta.getFoto();
