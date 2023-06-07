@@ -9,14 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.vussnkrs.CreateProductActivity;
-import com.example.vussnkrs.R;import com.example.vussnkrs.productos.ProductosManage;
+import com.example.vussnkrs.R;
+import com.example.vussnkrs.productos.ProductosManage;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,15 +32,17 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     Activity activity;
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nombre, imagen, precio;
+        TextView nombre, precio, talla;
+        ImageView foto;
         Button button_eliminar_manage, button_editar_manage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             nombre = itemView.findViewById(R.id.nombreMostrarManage);
-            imagen = itemView.findViewById(R.id.imagenMostrarManage);
+            foto = itemView.findViewById(R.id.fotoMostrarFavoritos);
             precio = itemView.findViewById(R.id.precioMostrarManage);
+            talla = itemView.findViewById(R.id.tallaMostrarManage);
             button_eliminar_manage = itemView.findViewById(R.id.button_eliminar_manage);
             button_editar_manage = itemView.findViewById(R.id.button_editar_manage);
         }
@@ -60,8 +65,15 @@ public class ProductoAdapterManage extends FirestoreRecyclerAdapter<ProductosMan
         final String id = documentSnapshot.getId();
 
         holder.nombre.setText(ProductosManage.getNombre());
-        holder.imagen.setText(ProductosManage.getTalla());
         holder.precio.setText(ProductosManage.getPrecio());
+        holder.talla.setText(ProductosManage.getTalla());
+        // Obtén la URL de descarga de la imagen desde productosManage
+        String imageUrl = ProductosManage.getFoto();
+
+        // Utiliza Glide para cargar y mostrar la imagen desde la URL de descarga
+        Glide.with(holder.itemView)
+                .load(imageUrl)
+                .into(holder.foto);
 
         holder.button_eliminar_manage.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -32,8 +32,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.Locale;
-
+import java.util.Map;
 
 
 public class PerfilActivity extends AppCompatActivity {
@@ -43,6 +44,7 @@ public class PerfilActivity extends AppCompatActivity {
     Button btn_actualizar_perfil;
     FirebaseFirestore mFirestore;
     private Spinner prefCompraSpinner, nZapatillasSpinner, idiomaSpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,20 +68,40 @@ public class PerfilActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
 
 
-        // Obtener el ID del usuario y llamar a getProduct()
+        // Obtener el ID del usuario y llamar a getUser()
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
             String userId = firebaseAuth.getCurrentUser().getUid();
             getUser(userId);
         }
+       /* String id = getIntent().getStringExtra("id_user");
 
+        if(id == null || id.equals("")) {
 
-        btn_actualizar_perfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //getProduct("xUCUKDxG1GfNRIvZzOEiKMXdiqg2");
-            }
-        });
+        } else {
+            getUser(id);
+*/
+        String id = firebaseAuth.getCurrentUser().getUid();
+            btn_actualizar_perfil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String nombreUser = txt_nombre.getText().toString().trim();
+                    String apellidosUser = txt_apellidos.getText().toString().trim();
+                    String direccionUser = txt_direccion.getText().toString().trim();
+                    String numeroUser = txt_numero.getText().toString().trim();
+                    String correoUser = txt_correo.getText().toString().trim();
+                    String contraseñaUser = txt_contraseña.getText().toString().trim();
+
+                    if (nombreUser.isEmpty() || apellidosUser.isEmpty() || direccionUser.isEmpty() || numeroUser.isEmpty() || correoUser.isEmpty() || contraseñaUser.isEmpty()) {
+                        Toast.makeText(PerfilActivity.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
+                    } else {
+                        updateUser(nombreUser, apellidosUser, direccionUser, numeroUser, correoUser, contraseñaUser, id);
+                        //startActivity(new Intent(PerfilActivity.this, PerfilActivity.class));
+                    }
+                }
+            });
+        //}
+
 
 
         /*
@@ -194,6 +216,8 @@ public class PerfilActivity extends AppCompatActivity {
             }
         });
 
+
+
         SharedPreferences sharedPreferences = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
 
         int nZapatillasPosition = sharedPreferences.getInt("nZapatillasPosition", 0);
@@ -280,6 +304,29 @@ public class PerfilActivity extends AppCompatActivity {
         });
     }
 
+    private void updateUser(String nombreUser, String apellidosUser, String direccionUser, String numeroUser, String correoUser, String contraseñaUser, String id) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("nombre", nombreUser);
+        map.put("apellidos", apellidosUser);
+        map.put("direccion", direccionUser);
+        map.put("numero", numeroUser);
+        map.put("correo", correoUser);
+        map.put("contraseña", contraseñaUser);
+
+        mFirestore.collection("user").document(id).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(PerfilActivity.this, "Actualizado exitosamente", Toast.LENGTH_SHORT).show();
+                //finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(PerfilActivity.this, "Error al actualizar ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
     @Override
     public void onBackPressed () {
         System.exit(0); // Cierra la actividad actual

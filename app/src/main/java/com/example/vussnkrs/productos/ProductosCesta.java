@@ -1,10 +1,10 @@
 package com.example.vussnkrs.productos;
 
 public class ProductosCesta {
-    String SKU, nombre, categoria, descripcion, talla, precio, stock, nproveedor;
+    String SKU, nombre, categoria, descripcion, talla, precio, stock, nproveedor, foto;
     public ProductosCesta(){}
 
-    public ProductosCesta(String SKU, String nombre, String categoria, String descripcion, String talla, String precio, String stock, String nproveedor){
+    public ProductosCesta(String SKU, String nombre, String categoria, String descripcion, String talla, String precio, String stock, String nproveedor, String foto){
         this.SKU = SKU;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -13,6 +13,7 @@ public class ProductosCesta {
         this.precio = precio;
         this.stock = stock;
         this.nproveedor = nproveedor;
+        this.foto = foto;
 
     }
 
@@ -78,5 +79,13 @@ public class ProductosCesta {
 
     public void setPrecio(String precio) {
         this.precio = precio;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.vussnkrs.FavoritosActivity;
 import com.example.vussnkrs.R;
 import com.example.vussnkrs.productos.Productos;
@@ -34,16 +35,19 @@ public class ProductoAdapterFavoritos extends FirestoreRecyclerAdapter<Productos
     private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nombre, talla, precio, stock;
+        TextView nombre, talla, precio, stock, imagen;
 
-        ImageView imageview_eliminar_favoritos;
+        ImageView imageview_eliminar_favoritos, foto;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             nombre = itemView.findViewById(R.id.nombreMostrarFavoritos);
-            talla = itemView.findViewById(R.id.imagenMostrarFavoritos);
+            talla = itemView.findViewById(R.id.tallaMostrarFavoritos);
             precio = itemView.findViewById(R.id.precioMostrarFavoritos);
+            imagen = itemView.findViewById(R.id.imagenMostrarFavoritos);
            // stock = itemView.findViewById(R.id.stockMostrarFavoritos);
+            foto = itemView.findViewById(R.id.fotoMostrarFavoritos);
             imageview_eliminar_favoritos = itemView.findViewById(R.id.imageview_eliminar_favoritos);
         }
     }
@@ -68,6 +72,14 @@ public class ProductoAdapterFavoritos extends FirestoreRecyclerAdapter<Productos
         holder.talla.setText(ProductosFavoritos.getTalla());
         holder.precio.setText(ProductosFavoritos.getPrecio());
         //holder.stock.setText(ProductosFavoritos.getStock());
+        //holder.imagen.setText(ProductosFavoritos.getFoto());
+        // Obtén la URL de descarga de la imagen desde productosManage
+        String imageUrl = ProductosFavoritos.getFoto();
+
+        // Utiliza Glide para cargar y mostrar la imagen desde la URL de descarga
+        Glide.with(holder.itemView)
+                .load(imageUrl)
+                .into(holder.foto);
 
         holder.imageview_eliminar_favoritos.setOnClickListener(new View.OnClickListener() {
             @Override

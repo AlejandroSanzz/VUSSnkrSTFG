@@ -9,10 +9,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.vussnkrs.adapter.ProductoAdapterCesta;
@@ -24,12 +26,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.StorageReference;
 
 public class FavoritosActivity extends AppCompatActivity {
 
+    ImageView boton_anadir_cesta;
     RecyclerView mRecycler;
     ProductoAdapterFavoritos mAdapter;
     FirebaseFirestore mFirestore;
+
+    StorageReference storageReference;
+    String storage_path = "product/*";
+
+    private Uri image_url;
+    String foto = "foto";
 
     // Obtén el ID de usuario guardado en SharedPreferences
     //SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -42,6 +52,7 @@ public class FavoritosActivity extends AppCompatActivity {
         // Configurar la AppBar
         Toolbar toolbar = findViewById(R.id.toolbarfavoritos);
         setSupportActionBar(toolbar);
+
 
         mFirestore = FirebaseFirestore.getInstance();
         mRecycler = findViewById(R.id.recyclerViewSingleFavoritos);

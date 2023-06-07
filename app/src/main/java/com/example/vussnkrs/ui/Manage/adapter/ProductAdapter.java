@@ -44,7 +44,7 @@ public class ProductAdapter extends FirestoreRecyclerAdapter<Product, ProductAda
             super(itemView);
 
             nombre = itemView.findViewById(R.id.nombreMostrarCesta);
-            imagen = itemView.findViewById(R.id.imagenMostrarCesta);
+            imagen = itemView.findViewById(R.id.tallaMostrarCesta);
             precio = itemView.findViewById(R.id.precioMostrarCesta);
         }
     }

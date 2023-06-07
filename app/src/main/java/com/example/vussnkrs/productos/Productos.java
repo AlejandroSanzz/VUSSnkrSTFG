@@ -3,10 +3,18 @@ package com.example.vussnkrs.productos;
 import java.security.IdentityScope;
 
 public class Productos {
-    String SKU, nombre, categoria, descripcion, talla, precio, stock, nproveedor;
+    String SKU;
+    String nombre;
+    String categoria;
+    String descripcion;
+    String talla;
+    String precio;
+    String stock;
+    String nproveedor;
+    String foto;
     public Productos(){}
 
-    public Productos(String SKU, String nombre, String categoria, String descripcion, String talla, String precio, String stock, String nproveedor){
+    public Productos(String SKU, String nombre, String categoria, String descripcion, String talla, String precio, String stock, String nproveedor, String foto){
         this.SKU = SKU;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -15,6 +23,7 @@ public class Productos {
         this.precio = precio;
         this.stock = stock;
         this.nproveedor = nproveedor;
+        this.foto = foto;
 
     }
 
@@ -80,5 +89,13 @@ public class Productos {
 
     public void setPrecio(String precio) {
         this.precio = precio;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

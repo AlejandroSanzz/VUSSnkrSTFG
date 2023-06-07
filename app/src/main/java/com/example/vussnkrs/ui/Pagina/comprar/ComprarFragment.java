@@ -1,6 +1,8 @@
 package com.example.vussnkrs.ui.Pagina.comprar;
 
 import androidx.lifecycle.ViewModelProvider;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +32,7 @@ public class ComprarFragment extends Fragment {
     ProductoAdapter mAdapter;
     FirebaseFirestore mFirestore;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

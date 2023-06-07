@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,6 +37,7 @@ public class CreateProductActivity extends AppCompatActivity {
 
     ImageView foto_producto;
     Button btn_add_Prod, boton_anadir_foto, boton_eliminar_foto;
+
     EditText sku, nombre, categoria, descripcion, talla, precio, stock, proveedor;
     private FirebaseFirestore mfirestore;
     private FirebaseAuth mAuth;
@@ -48,10 +50,11 @@ public class CreateProductActivity extends AppCompatActivity {
 
     private Uri image_url;
     String foto = "foto";
-    String idd;
+
 
     ProgressDialog progressDialog;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,8 @@ public class CreateProductActivity extends AppCompatActivity {
         boton_eliminar_foto = findViewById(R.id.boton_eliminar_foto);
         progressDialog = new ProgressDialog(this);
 
+       // boton_anadir_cesta = findViewById(R.id.imageview_cesta);
+
         String id = getIntent().getStringExtra("id_product");
 
         if (id == null || id == "") {
@@ -94,10 +99,11 @@ public class CreateProductActivity extends AppCompatActivity {
 
 
 
-                    if (nombreProduct.isEmpty() && tallaProduct.isEmpty() && skuProduct.isEmpty() && nombreProduct.isEmpty() && categoriaProduct.isEmpty() && descripcionProduct.isEmpty() && tallaProduct.isEmpty() && precioProduct.isEmpty() && stockProduct.isEmpty() && proveedorProduct.isEmpty()) {
+                    if (nombreProduct.isEmpty() || tallaProduct.isEmpty() || skuProduct.isEmpty() || nombreProduct.isEmpty() || categoriaProduct.isEmpty() || descripcionProduct.isEmpty() || tallaProduct.isEmpty() || precioProduct.isEmpty() || stockProduct.isEmpty() || proveedorProduct.isEmpty()) {
                         Toast.makeText(CreateProductActivity.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
                     } else {
                         postProduct(skuProduct, nombreProduct, categoriaProduct, descripcionProduct, tallaProduct, precioProduct, stockProduct, proveedorProduct);
+                        startActivity(new Intent(CreateProductActivity.this, CreateProductActivity.class));
                     }
                 }
             });
@@ -117,7 +123,7 @@ public class CreateProductActivity extends AppCompatActivity {
                     String stockProduct = stock.getText().toString().trim();
                     String proveedorProduct = proveedor.getText().toString().trim();
 
-                    if (nombreProduct.isEmpty() && tallaProduct.isEmpty() && skuProduct.isEmpty() && nombreProduct.isEmpty() && categoriaProduct.isEmpty() && descripcionProduct.isEmpty() && tallaProduct.isEmpty() && precioProduct.isEmpty() && stockProduct.isEmpty() && proveedorProduct.isEmpty()) {
+                    if (nombreProduct.isEmpty() || tallaProduct.isEmpty() || skuProduct.isEmpty() || nombreProduct.isEmpty() || categoriaProduct.isEmpty() || descripcionProduct.isEmpty() || tallaProduct.isEmpty() || precioProduct.isEmpty() || stockProduct.isEmpty() || proveedorProduct.isEmpty()) {
                         Toast.makeText(CreateProductActivity.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
                     } else {
                         updateProduct(skuProduct, nombreProduct, categoriaProduct, descripcionProduct, tallaProduct, precioProduct, stockProduct, proveedorProduct, id);
@@ -179,9 +185,7 @@ public class CreateProductActivity extends AppCompatActivity {
         mfirestore.collection("product").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                finish();
                 Toast.makeText(CreateProductActivity.this, "Creado exitosamente", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(CreateProductActivity.this, MainActivity.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -234,7 +238,14 @@ public class CreateProductActivity extends AppCompatActivity {
 
         startActivityForResult(i, COD_SEL_IMAGE);
     }
+    /*
+    private void uploadFotoCesta() {
+        Intent i = new Intent(Intent.ACTION_PICK);
+        i.setType("image/*");
 
+        startActivityForResult(i, COD_SEL_IMAGE);
+    }
+*/
     @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -242,14 +253,25 @@ public class CreateProductActivity extends AppCompatActivity {
             if (requestCode == COD_SEL_IMAGE ) {
                 image_url = data.getData();
                 subirFoto(image_url);
+                //subirFotoCesta(image_url);
             }
         }
     }
 
+   // FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+
     private void subirFoto (Uri image_url) {
         progressDialog.setMessage("Actualizando foto");
         progressDialog.show();
-        String rute_storage_foto = storage_path + "" + foto + "" + mAuth.getUid() + "" + idd;
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userId = currentUser.getUid();
+
+        String productId = getIntent().getStringExtra("id_product");
+
+        String rute_storage_foto = storage_path + "" + foto + "" + mAuth.getUid() + "" + productId;
         StorageReference reference = storageReference.child(rute_storage_foto);
         reference.putFile(image_url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -263,7 +285,9 @@ public class CreateProductActivity extends AppCompatActivity {
                             String downolad_uri = uri.toString();
                             HashMap<String, Object> map = new HashMap<>();
                             map.put("foto", downolad_uri);
-                            mfirestore.collection("product").document(idd).update(map);
+                            mfirestore.collection("product").document(productId).update(map);
+                            //mfirestore.collection("user").document(userId).collection("productFavoritos").document(productId).update(map);
+                            //mfirestore.collection("user").document(userId).collection("productCesta").document(productId).update(map);
                             Toast.makeText(CreateProductActivity.this, "Foto actualizada", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
@@ -277,7 +301,48 @@ public class CreateProductActivity extends AppCompatActivity {
             }
         });
     }
+/*
+    private void subirFotoCesta (Uri image_url) {
+        progressDialog.setMessage("Actualizando foto");
+        progressDialog.show();
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userId = currentUser.getUid();
+
+        String productId = getIntent().getStringExtra("id_product");
+
+        String rute_storage_foto = storage_path + "" + foto + "" + mAuth.getUid() + "" + productId;
+        StorageReference reference = storageReference.child(rute_storage_foto);
+        reference.putFile(image_url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                while (!uriTask.isSuccessful());
+                if (uriTask.isSuccessful()) {
+                    uriTask.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String downolad_uri = uri.toString();
+                            HashMap<String, Object> map = new HashMap<>();
+                            map.put("foto", downolad_uri);
+                            //mfirestore.collection("product").document(productId).update(map);
+                            //mfirestore.collection("user").document(userId).collection("productFavoritos").document(productId).update(map);
+                            mfirestore.collection("user").document(userId).collection("productCesta").document(productId).update(map);
+                            Toast.makeText(CreateProductActivity.this, "Foto actualizada", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                    });
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(CreateProductActivity.this, "Error al cargar la foto", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+*/
     @Override
     public void onBackPressed () {
         new AlertDialog.Builder(this)

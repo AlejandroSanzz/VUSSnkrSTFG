@@ -37,10 +37,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/imagenMostrarCesta"
+        android:id="@+id/tallaMostrarCesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Imagen"
+        android:text="Talla"
         android:textSize="17sp" />
 
     <TextView
@@ -49,6 +49,11 @@
         android:layout_height="wrap_content"
         android:text="Stock"
         android:textSize="17sp"/>
+
+    <ImageView
+        android:id="@+id/fotoMostrarCesta"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
 
     <ImageView
         android:id="@+id/imageview_eliminar_cesta"

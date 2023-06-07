@@ -36,11 +36,16 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/imagenMostrarManage"
+        android:id="@+id/tallaMostrarManage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Imagen"
+        android:text="Talla"
         android:textSize="17sp" />
+
+    <ImageView
+        android:id="@+id/fotoMostrarFavoritos"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,16 +58,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#FF0000"
-            android:text="Eliminar"
-            android:drawableLeft="@drawable/eliminar"/>
+            android:text="Eliminar"/>
 
         <Button
             android:id="@+id/button_editar_manage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Editar"
-            android:drawableLeft="@drawable/mostrar"/>
+            android:text="Editar"/>
+
     </LinearLayout>
 
 </LinearLayout>

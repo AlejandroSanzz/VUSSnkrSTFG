@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.vussnkrs.CestaActivity;
-import com.example.vussnkrs.EleccionAdminActivity;
-import com.example.vussnkrs.MainActivity;
+import com.bumptech.glide.Glide;
 import com.example.vussnkrs.R;
-import com.example.vussnkrs.productos.Productos;
 import com.example.vussnkrs.productos.ProductosCesta;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -40,14 +36,15 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre, talla, precio, stock;//precioTotal;
 
-        ImageView imageview_eliminar_cesta;
+        ImageView imageview_eliminar_cesta, foto;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             nombre = itemView.findViewById(R.id.nombreMostrarCesta);
-            talla = itemView.findViewById(R.id.imagenMostrarCesta);
+            talla = itemView.findViewById(R.id.tallaMostrarCesta);
             precio = itemView.findViewById(R.id.precioMostrarCesta);
             stock = itemView.findViewById(R.id.stockMostrarCesta);
+            foto = itemView.findViewById(R.id.fotoMostrarCesta);
             imageview_eliminar_cesta = itemView.findViewById(R.id.imageview_eliminar_cesta);
         }
     }
@@ -72,6 +69,14 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
         holder.talla.setText(ProductosCesta.getTalla());
         holder.precio.setText(ProductosCesta.getPrecio());
         holder.stock.setText(ProductosCesta.getStock());
+
+        // Obtén la URL de descarga de la imagen desde productosManage
+        String imageUrl = ProductosCesta.getFoto();
+
+        // Utiliza Glide para cargar y mostrar la imagen desde la URL de descarga
+        Glide.with(holder.itemView)
+                .load(imageUrl)
+                .into(holder.foto);
 
         holder.imageview_eliminar_cesta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +107,6 @@ public class ProductoAdapterCesta extends FirestoreRecyclerAdapter<ProductosCest
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(context, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
