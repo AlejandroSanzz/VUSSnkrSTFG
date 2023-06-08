@@ -41,13 +41,6 @@
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".AltaClienteActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ManageActivity"
             android:exported="false"
             android:label="@string/title_activity_manage">
@@ -55,17 +48,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".PaginaActivity"
-            android:exported="false"
-            android:label="@string/title_activity_pagina">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".AdminActivity"
-            android:exported="true" />
         <activity
             android:name=".InicioActivity"
             android:exported="true">
